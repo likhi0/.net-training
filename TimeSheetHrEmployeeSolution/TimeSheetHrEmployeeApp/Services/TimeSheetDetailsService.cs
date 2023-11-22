@@ -13,7 +13,11 @@ namespace TimeSheetHrEmployeeApp.Services
         {
             _timesheetdetailsRepository = timesheetdetailsRepository;
         }
-
+        /// <summary>
+        /// addig timesheetdetails
+        /// </summary>
+        /// <param name="timeSheetDetails"></param>
+        /// <returns></returns>
         public bool AddTimesheetDetails(TimeSheetDetails timeSheetDetails)
         {
             var TimeSheetDetails = new TimeSheetDetails
@@ -31,6 +35,11 @@ namespace TimeSheetHrEmployeeApp.Services
             }
             return false;
         }
+        /// <summary>
+        /// list of timesheet details
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NoDetailsFoundException"></exception>
 
         public IList<TimeSheetDetails> GetAllDetails()
         {

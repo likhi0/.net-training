@@ -12,6 +12,11 @@ namespace TimeSheetHrEmployeeApp.Services
         {
             _TimesheetRepository = TimesheetRepository;
         }
+        /// <summary>
+        /// add the time sheet details
+        /// </summary>
+        /// <param name="timeSheet"></param>
+        /// <returns></returns>
 
         public bool AddTimeSheet(TimeSheet timeSheet)
         {
@@ -31,18 +36,32 @@ namespace TimeSheetHrEmployeeApp.Services
             return false;
 
         }
+        /// <summary>
+        /// list of the timesheets 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
 
-       // public IList<TimeSheet> GetAllTimeSheets()
-        //{
-            //throw new NotImplementedException();
-        //}
-
-        public TimeSheet UpdateTimeSheet(TimeSheet timeSheet)
+        public IList<TimeSheet> GetAllTimeSheets(string username)
         {
-            if (timeSheet != null)
+            var user = _TimesheetRepository.GetAll().Where(u => u.Username == username).ToList();
+            if (user != null)
             {
-
-                var existingTimeSheet = _TimesheetRepository.GetById(timeSheet.TimesheetID);
+                return user;
+            }
+            return null;
+        }
+        /// <summary>
+        /// updating the timeshhet
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="timeSheet"></param>
+        /// <returns></returns>
+        public TimeSheet UpdateTimeSheet(int id,TimeSheet timeSheet)
+        {
+           
+            
+                var existingTimeSheet = _TimesheetRepository.GetById(id);
                 if (existingTimeSheet != null)
                 {
                     existingTimeSheet.Username = timeSheet.Username;
@@ -54,7 +73,7 @@ namespace TimeSheetHrEmployeeApp.Services
                     var result = _TimesheetRepository.Update(timeSheet);
                     return result;
                 }
-            }
+            
 
             return null;
         }

@@ -12,7 +12,11 @@ namespace TimeSheetHrEmployeeApp.Services
         {
             _tasksRepository = tasksRepository;
         }
-
+        /// <summary>
+        /// adding the task
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns></returns>
         public Tasks AddTask(Tasks task)
         {
             if (task != null)
@@ -22,7 +26,11 @@ namespace TimeSheetHrEmployeeApp.Services
             }
             return null;
         }
-
+        /// <summary>
+        /// list of tasks
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NoTaskAvaliableException"></exception>
         public IList<Tasks> GetAllTasks()
         {
             var tasks = _tasksRepository.GetAll();

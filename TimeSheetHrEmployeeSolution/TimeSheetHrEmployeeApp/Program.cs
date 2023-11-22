@@ -64,7 +64,7 @@ namespace TimeSheetHrEmployeeApp
             {
                 opts.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
             });
-           // builder.Logging.AddLog4Net();
+            builder.Logging.AddLog4Net();
             
 
             builder.Services.AddScoped<IRepository<string, User>, UserRepository>();

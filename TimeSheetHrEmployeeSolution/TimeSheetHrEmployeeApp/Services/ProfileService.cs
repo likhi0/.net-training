@@ -15,6 +15,11 @@ namespace TimeSheetHrEmployeeApp.Services
         {
             _profileRepository = profileRepository;
         }
+        /// <summary>
+        /// adding the profile
+        /// </summary>
+        /// <param name="profileDTO"></param>
+        /// <returns></returns>
 
         public bool AddProfile(ProfileDTO profileDTO)
         {
@@ -28,7 +33,7 @@ namespace TimeSheetHrEmployeeApp.Services
                 JobTitle = profileDTO.JobTitle,
                 Picture = profileDTO.Picture
             };
-
+            
            
             var result = _profileRepository.Add(profile);
 
@@ -40,49 +45,56 @@ namespace TimeSheetHrEmployeeApp.Services
 
             return false ;
         }
-
-        public ProfileDTO UpdateProfile(ProfileDTO profileDTO)
+        /// <summary>
+        /// updatig the profile
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="profileDTO"></param>
+        /// <returns></returns>
+        public ProfileDTO UpdateProfile(int id, ProfileDTO profileDTO)
         {
            
-            var existingProfile = _profileRepository.GetById(profileDTO.ProfileId);
-
-            existingProfile.Username = profileDTO.Username;
-            existingProfile.FirstName = profileDTO.FirstName;
-            existingProfile.LastName = profileDTO.LastName;
-            existingProfile.ContactNumber = profileDTO.ContactNumber;
-            existingProfile.JobTitle = profileDTO.JobTitle;
-            existingProfile.Picture = profileDTO.Picture;
-
-            var result = _profileRepository.Update(existingProfile);
-
-            if (result != null)
-            {
-                
-                return profileDTO;
-            }
-
-            return null;
-        }
-
-        public ProfileDTO DeleteProfile(ProfileDTO profileDTO)
-        {
-            var existingProfile = _profileRepository.GetById(profileDTO.ProfileId);
-           // int ProfiletId = profileDTO.ProfileId;
-
+            var existingProfile = _profileRepository.GetById(id);
             if (existingProfile != null)
-            { 
-                throw new NoProfileFoundException();
-            }
-
-            var result = _profileRepository.Delete(existingProfile.ProfileId);
-
-            if (result != null)
             {
-                
+
+                existingProfile.Username = profileDTO.Username;
+                existingProfile.FirstName = profileDTO.FirstName;
+                existingProfile.LastName = profileDTO.LastName;
+                existingProfile.ContactNumber = profileDTO.ContactNumber;
+                existingProfile.JobTitle = profileDTO.JobTitle;
+                existingProfile.Picture = profileDTO.Picture;
+
+                var result = _profileRepository.Update(existingProfile);
+
+
+
                 return profileDTO;
             }
+          
 
             return null;
         }
+        /// <summary>
+        /// deleting the profile
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        public bool DeleteProfile(int id)
+        {
+
+            var result = _profileRepository.Delete(id);
+
+            if (result != null)
+            {
+
+                return true;
+            }
+
+            return false;
+        }
+
+       
     }
 }

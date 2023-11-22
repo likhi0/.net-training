@@ -10,12 +10,21 @@ namespace TimeSheetHrEmployeeApp.Services
     {
         private readonly IRepository<string, User> _repository;
         private readonly ITokenService _tokenService;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="tokenService"></param>
         public UserService(IRepository<string, User> repository, ITokenService tokenService)
         {
             _repository = repository;
             _tokenService = tokenService;
         }
+        /// <summary>
+        /// login the user
+        /// </summary>
+        /// <param name="userDTO"></param>
+        /// <returns></returns>
         public UserDTO Login(UserDTO userDTO)
         {
             var user = _repository.GetById(userDTO.Username);
@@ -34,7 +43,11 @@ namespace TimeSheetHrEmployeeApp.Services
             }
             return null;
         }
-
+        /// <summary>
+        /// register the user
+        /// </summary>
+        /// <param name="userDTO"></param>
+        /// <returns></returns>
         public UserDTO Register(UserDTO userDTO)
         {
             HMACSHA512 hmac = new HMACSHA512();

@@ -13,6 +13,11 @@ namespace TimeSheetHrEmployeeApp.Services
         {
             _leaverequestRepository = leaverequestRepository;
         }
+        /// <summary>
+        /// adding leave
+        /// </summary>
+        /// <param name="leaverequest"></param>
+        /// <returns></returns>
 
         public bool AddLeave(LeaveRequest leaverequest)
         {
@@ -31,6 +36,10 @@ namespace TimeSheetHrEmployeeApp.Services
             }
             return false;
         }
+        /// <summary>
+        /// list of requests
+        /// </summary>
+        /// <returns></returns>
 
         public IList<LeaveRequest> GetAllLeaves()
         {

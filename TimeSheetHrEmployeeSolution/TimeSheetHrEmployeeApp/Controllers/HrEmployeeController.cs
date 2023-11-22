@@ -11,11 +11,18 @@ namespace TimeSheetHrEmployeeApp.Controllers
     public class HrEmployeeController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly ILogger<UserController> _logger;
 
-        public HrEmployeeController(IUserService userService)
+        public HrEmployeeController(IUserService userService, ILogger<UserController> logger)
         {
             _userService = userService;
+            _logger = logger;
         }
+        /// <summary>
+        /// register the user
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Register(UserDTO viewModel)
         {
@@ -25,6 +32,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
                 var user = _userService.Register(viewModel);
                 if (user != null)
                 {
+                    _logger.LogInformation("User Register");
                     return Ok(user);
                 }
             }
@@ -36,8 +44,14 @@ namespace TimeSheetHrEmployeeApp.Controllers
             {
 
             }
+            _logger.LogError("Registeration failed");
             return BadRequest(message);
         }
+        /// <summary>
+        /// login the users
+        /// </summary>
+        /// <param name="userDTO"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Login")]//attribute based routing
         public ActionResult Login(UserDTO userDTO)
@@ -45,8 +59,10 @@ namespace TimeSheetHrEmployeeApp.Controllers
             var result = _userService.Login(userDTO);
             if (result != null)
             {
+                _logger.LogInformation("user login");
                 return Ok(result);
             }
+            _logger.LogError("Login failed");
             return Unauthorized("Invalid username or password");
         }
     }

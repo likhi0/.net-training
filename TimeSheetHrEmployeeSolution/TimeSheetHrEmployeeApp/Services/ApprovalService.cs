@@ -13,6 +13,11 @@ namespace TimeSheetHrEmployeeApp.Services
         {
             _approvalRepository = approvalRepository;
         }
+        /// <summary>
+        /// adding approval
+        /// </summary>
+        /// <param name="approval"></param>
+        /// <returns></returns>
 
         public bool AddApproval(Approval approval)
         {
@@ -30,6 +35,10 @@ namespace TimeSheetHrEmployeeApp.Services
             }
             return false;
         }
+        /// <summary>
+        /// list of approval
+        /// </summary>
+        /// <returns></returns>
 
         public IList<Approval> GetAllApprovals()
         {

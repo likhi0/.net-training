@@ -12,10 +12,12 @@ namespace TimeSheetHrEmployeeApp.Controllers
     public class TimeSheetDetailsController : ControllerBase
     {
         private readonly ITimeSheetDetailsService _timesheetdetailsService;
-        public TimeSheetDetailsController(ITimeSheetDetailsService timesheetdetailsService)
+        private readonly ILogger _logger;
+        public TimeSheetDetailsController(ITimeSheetDetailsService timesheetdetailsService, ILogger<TimeSheetDetailsController> logger)
         {
             _timesheetdetailsService = timesheetdetailsService;
-                
+            _logger = logger;
+
         }
 
         [HttpGet]

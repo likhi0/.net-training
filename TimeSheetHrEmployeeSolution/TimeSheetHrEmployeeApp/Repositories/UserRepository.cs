@@ -12,12 +12,22 @@ namespace TimeSheetHrEmployeeApp.Repositories
         {
             _context = context;
         }
+        /// <summary>
+        /// add the user
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public User Add(User entity)
         {
             _context.Users.Add(entity);
             _context.SaveChanges();
             return entity;
         }
+        /// <summary>
+        /// delete 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
 
         public User Delete(string key)
         {

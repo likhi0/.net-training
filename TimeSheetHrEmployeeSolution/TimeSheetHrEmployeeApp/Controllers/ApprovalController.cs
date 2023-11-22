@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimeSheetHrEmployeeApp.Interface;
@@ -12,28 +13,45 @@ namespace TimeSheetHrEmployeeApp.Controllers
     public class ApprovalController : ControllerBase
     {
         private readonly IApprovalService _approvalService;
-        public ApprovalController(IApprovalService approvalService)
+        private readonly ILogger _logger;
+        public ApprovalController(IApprovalService approvalService, ILogger<ApprovalController> logger)
         {
             _approvalService = approvalService;
+            _logger = logger;
         }
-        
+        /// <summary>
+        /// Add the approval
+        /// </summary>
+        /// <param name="approval"></param>
+        /// <returns></returns>
         [HttpPost]
+        
         public IActionResult AddApproval(Approval approval)
         {
             var result = _approvalService.AddApproval(approval);
             if (result)
+            {
+                _logger.LogInformation("Post the apporval");
                 return Ok(approval);
+            }
+            _logger.LogError("Approval failed");
             return BadRequest("Could not add approval");
         }
+        /// <summary>
+        /// getting approvals
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Get()
         {
-            var leaves = _approvalService.GetAllApprovals();
-            if (leaves == null)
+            var result = _approvalService.GetAllApprovals();
+            if (result != null)
             {
-                return BadRequest("could not found");
+                _logger.LogInformation("Get all approvals");
+                return Ok(result);
             }
-            return Ok(leaves);
+            _logger.LogError("Approval failed");
+            return BadRequest("Could not get approval");
 
         }
     }

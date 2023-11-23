@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheetHrEmployeeApp", "TimeSheetHrEmployeeApp\TimeSheetHrEmployeeApp.csproj", "{DB998D5F-01B5-4B82-BEB5-DA47A9C45CDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheetHrEmployeeApp", "TimeSheetHrEmployeeApp\TimeSheetHrEmployeeApp.csproj", "{DB998D5F-01B5-4B82-BEB5-DA47A9C45CDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheetHrEmployeeTesting", "TimeSheetHrEmployeeTesting\TimeSheetHrEmployeeTesting.csproj", "{B4A1D29A-6F2F-4654-8122-BB3CF9BD30CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DB998D5F-01B5-4B82-BEB5-DA47A9C45CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB998D5F-01B5-4B82-BEB5-DA47A9C45CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB998D5F-01B5-4B82-BEB5-DA47A9C45CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4A1D29A-6F2F-4654-8122-BB3CF9BD30CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A1D29A-6F2F-4654-8122-BB3CF9BD30CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4A1D29A-6F2F-4654-8122-BB3CF9BD30CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4A1D29A-6F2F-4654-8122-BB3CF9BD30CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

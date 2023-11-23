@@ -255,3 +255,4 @@ E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\bin\Debug
 E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\obj\Debug\net6.0\TimeSheetHrEmployeeApp.MvcApplicationPartsAssemblyInfo.cs
 E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\bin\Debug\net6.0\log4net.dll
 E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\bin\Debug\net6.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
+E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\bin\Debug\net6.0\log4net.config

@@ -32,6 +32,9 @@ namespace TimeSheetHrEmployeeApp.Repositories
 
         public IList<LeaveRequest> GetAll()
         {
+            if (_context.LeaveRequests.Count() == 0)
+                return null;
+
             return _context.LeaveRequests.ToList();
         }
 

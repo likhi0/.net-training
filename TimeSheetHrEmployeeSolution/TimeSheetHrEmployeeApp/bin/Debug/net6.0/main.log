@@ -14,3 +14,32 @@
 2023-11-19 12:49:02,906 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
 2023-11-19 12:49:02,936 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
 2023-11-19 12:49:02,942 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-11-23 14:58:16,367 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-11-23 14:58:16,691 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-11-23 14:58:16,809 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-11-23 14:58:16,845 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-11-23 15:02:33,131 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-11-23 15:02:39,281 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (415ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Approvals] ([Approvedby], [AprrovedDate], [Comment], [Status], [TimesheetID])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [ApprovalID]
+FROM [Approvals]
+WHERE @@ROWCOUNT = 1 AND [ApprovalID] = scope_identity();
+2023-11-23 15:02:39,593 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ApprovalController.AddApproval[34] - Post the apporval
+2023-11-23 15:48:54,994 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-11-23 15:48:55,546 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-11-23 15:48:55,598 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-11-23 15:48:55,622 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-11-23 16:22:05,442 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-11-23 16:22:05,686 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-11-23 16:22:05,698 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-11-23 16:22:05,703 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-11-23 16:23:07,006 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-11-23 16:23:12,352 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (321ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [TimeSheets] AS [t]
+2023-11-23 16:23:13,224 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (555ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[TimesheetID], [t].[Comments], [t].[HoursWorked], [t].[OverTime], [t].[Period], [t].[Username]
+FROM [TimeSheets] AS [t]
+2023-11-23 16:23:13,636 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.TimeSheetController.GetAllTimeSheets[68] - Get all time sheets from user

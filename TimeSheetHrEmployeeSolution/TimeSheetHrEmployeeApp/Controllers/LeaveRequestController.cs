@@ -40,9 +40,9 @@ namespace TimeSheetHrEmployeeApp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult GetAllLeaves(string username)
         {
-            var leaves = _leaverequestService.GetAllLeaves();
+            var leaves = _leaverequestService.GetAllLeaves(username);
             if (leaves != null)
             {
                 _logger.LogInformation("Get all leaves");

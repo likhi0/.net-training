@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TimeSheetHrEmployeeApp.Interface;
@@ -8,6 +9,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("reactApp")]
     public class HrEmployeeController : ControllerBase
     {
         private readonly IUserService _userService;

@@ -71,3 +71,19 @@ SELECT [ProfileId]
 FROM [Profiles]
 WHERE @@ROWCOUNT = 1 AND [ProfileId] = scope_identity();
 2023-11-23 21:58:55,272 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ProfileController.AddProfile[39] - Profile Add
+2023-11-24 16:07:34,486 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-11-24 16:07:36,831 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-11-24 16:07:36,850 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-11-24 16:07:36,861 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-11-24 16:16:53,491 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-11-24 16:16:58,758 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (912ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 8000) (DbType = Binary), @p2='?' (Size = 8000) (DbType = Binary), @p3='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Username], [Key], [Password], [Role])
+VALUES (@p0, @p1, @p2, @p3);
+2023-11-24 16:16:58,917 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.UserController.Register[37] - User Register
+2023-11-24 16:23:34,490 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-11-24 16:23:36,711 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (305ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (Size = 8000) (DbType = Binary), @p2='?' (Size = 8000) (DbType = Binary), @p3='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Username], [Key], [Password], [Role])
+VALUES (@p0, @p1, @p2, @p3);
+2023-11-24 16:23:36,819 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.UserController.Register[37] - User Register

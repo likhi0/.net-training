@@ -19,6 +19,7 @@ namespace TimeSheetHrEmployeeApp
             builder.Services.AddControllersWithViews();
             //builder.Services.AddControllers();
             //builder.Services.AddEndpointsApiExplorer();
+            #region Swagger
             builder.Services.AddSwaggerGen(opt =>
             {
                 opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -47,6 +48,17 @@ namespace TimeSheetHrEmployeeApp
                      }
                  });
             });
+            #endregion
+            #region CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("reactApp", opts =>
+                {
+                    opts.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+                });
+            });
+            #endregion
+            #region Uitility
 
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -65,8 +77,9 @@ namespace TimeSheetHrEmployeeApp
                 opts.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
             });
             builder.Logging.AddLog4Net();
-            
+            #endregion
 
+            #region UserDerfinedServices
             builder.Services.AddScoped<IRepository<string, User>, UserRepository>();
             builder.Services.AddScoped<IRepository<int, Profile>, ProfileRepository>();
             builder.Services.AddScoped<IRepository<int, TimeSheet>, TimeSheetRepository>();
@@ -82,7 +95,7 @@ namespace TimeSheetHrEmployeeApp
             builder.Services.AddScoped<ITasksService, TasksService>();
             builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();
             builder.Services.AddScoped<IApprovalService, ApprovalService>();
-
+            #endregion
 
 
 
@@ -101,6 +114,7 @@ namespace TimeSheetHrEmployeeApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors("reactApp");
 
             app.UseAuthorization();
             app.UseAuthentication();

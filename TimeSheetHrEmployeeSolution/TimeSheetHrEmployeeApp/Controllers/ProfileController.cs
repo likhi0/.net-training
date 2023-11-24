@@ -1,4 +1,5 @@
 ﻿using log4net.Repository.Hierarchy;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Framework;
@@ -11,6 +12,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("reactApp")]
     public class ProfileController : ControllerBase
     {
         private readonly IProfileService _profileService;

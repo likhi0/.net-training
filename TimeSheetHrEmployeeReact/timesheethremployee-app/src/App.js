@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import AddProfiles from './components/AddProfiles';
 import RegisterUser from './components/RegisterUser';
+import LoginUser from './components/LoginUser';
+//import App1 from'./components/App1';
 function App() {
   return (
     // <div className="App">
@@ -14,8 +16,9 @@ function App() {
     //   </div>
       
     // </div>
-    <div>
-      <RegisterUser/>
+    <div className="app-container">
+      <h1 className="center">TimeSheetHREmployee</h1>
+      <LoginUser/>
     </div>
   );
 }

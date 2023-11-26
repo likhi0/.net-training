@@ -38,7 +38,8 @@
 }
 .center{
   text-align: center;
-  color:palevioletred;
+  color:brown;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .app-container {
   background-color:lightblue; /* Replace with your preferred background color */

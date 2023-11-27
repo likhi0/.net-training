@@ -14,6 +14,7 @@
   .form-control {
     margin-bottom: 10px;
     width: 100%;
+    
   }
   
   .form-select {
@@ -27,9 +28,13 @@
   
   .alert-danger {
     color: red;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
   }
   .centre{
     text-align: center;
+  }
+  .highlight-label{
+    font-weight:bold ;
+
   }
   

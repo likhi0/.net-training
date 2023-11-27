@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimeSheetHrEmployeeApp.Exceptions;
 using TimeSheetHrEmployeeApp.Interface;
@@ -9,6 +10,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("reactApp")]
     public class LeaveRequestController : ControllerBase
     {
         private readonly ILeaveRequestService _leaverequestService;

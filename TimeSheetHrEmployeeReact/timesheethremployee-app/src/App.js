@@ -4,6 +4,9 @@ import AddProfiles from './components/AddProfiles';
 import RegisterUser from './components/RegisterUser';
 import TimeSheet from './components/TimeSheet';
 import LoginUser from './components/LoginUser';
+import Tasks from './components/Tasks';
+import Approval from './components/Approval';
+import LeaveRequest from './components/LeaveRequest';
 //import App1 from'./components/App1';
 function App() {
   return (
@@ -17,12 +20,12 @@ function App() {
     //   </div>
       
     // </div>
-    // <div className="app-container">
+    //  <div className="app-container">
     //   <h1 className="center">TimeSheetHREmployee</h1>
     //   <LoginUser/>
-    // </div>
+    //  </div>
     <div>
-      <TimeSheet/>
+      <LeaveRequest/>
     </div>
   );
 }

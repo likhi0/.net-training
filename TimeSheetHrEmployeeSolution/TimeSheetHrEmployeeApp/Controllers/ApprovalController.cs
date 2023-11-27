@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TimeSheetHrEmployeeApp.Interface;
@@ -10,6 +11,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("reactApp")]
     public class ApprovalController : ControllerBase
     {
         private readonly IApprovalService _approvalService;

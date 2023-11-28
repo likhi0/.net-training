@@ -247,3 +247,47 @@ SELECT [ApprovalID]
 FROM [Approvals]
 WHERE @@ROWCOUNT = 1 AND [ApprovalID] = scope_identity();
 2023-11-27 16:55:29,915 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ApprovalController.AddApproval[36] - Post the apporval
+2023-11-27 22:11:13,602 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-11-27 22:11:13,828 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-11-27 22:11:13,848 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-11-27 22:11:13,855 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-11-27 22:18:17,226 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-11-27 22:18:22,874 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (149ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [LeaveRequests] AS [l]
+2023-11-27 22:18:23,463 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (75ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [l].[LeaveRequestID], [l].[EndDate], [l].[StartDate], [l].[Status], [l].[Username]
+FROM [LeaveRequests] AS [l]
+2023-11-27 22:18:23,584 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.LeaveRequestController.GetAllLeaves[50] - Get all leaves
+2023-11-28 14:53:04,984 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-11-28 14:53:05,435 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-11-28 14:53:05,464 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-11-28 14:53:05,479 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-11-28 14:53:58,634 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-11-28 14:54:04,193 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (209ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [LeaveRequests] AS [l]
+2023-11-28 14:54:04,449 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (29ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [l].[LeaveRequestID], [l].[EndDate], [l].[StartDate], [l].[Status], [l].[Username]
+FROM [LeaveRequests] AS [l]
+2023-11-28 14:54:04,645 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.LeaveRequestController.GetAllLeaves[50] - Get all leaves
+2023-11-28 16:56:03,410 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-11-28 16:56:03,632 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-11-28 16:56:03,655 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-11-28 16:56:03,685 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-11-28 17:20:03,242 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-11-28 17:20:07,057 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (186ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [LeaveRequests] AS [l]
+2023-11-28 17:20:07,306 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [l].[LeaveRequestID], [l].[EndDate], [l].[StartDate], [l].[Status], [l].[Username]
+FROM [LeaveRequests] AS [l]
+2023-11-28 17:20:07,509 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.LeaveRequestController.GetAllLeaves[50] - Get all leaves
+2023-11-28 17:20:48,141 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-11-28 17:20:48,158 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [LeaveRequests] AS [l]
+2023-11-28 17:20:48,167 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [l].[LeaveRequestID], [l].[EndDate], [l].[StartDate], [l].[Status], [l].[Username]
+FROM [LeaveRequests] AS [l]
+2023-11-28 17:20:48,172 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.LeaveRequestController.GetAllLeaves[50] - Get all leaves

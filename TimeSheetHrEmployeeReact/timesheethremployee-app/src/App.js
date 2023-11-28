@@ -6,7 +6,7 @@ import TimeSheet from './components/TimeSheet';
 import LoginUser from './components/LoginUser';
 import Tasks from './components/Tasks';
 import Approval from './components/Approval';
-import LeaveRequest from './components/LeaveRequest';
+import LeaveRequests from './components/LeaveRequests';
 //import App1 from'./components/App1';
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
     //   <LoginUser/>
     //  </div>
     <div>
-      <LeaveRequest/>
+      <LeaveRequests/>
     </div>
   );
 }

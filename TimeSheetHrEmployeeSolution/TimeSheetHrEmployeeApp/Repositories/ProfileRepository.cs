@@ -1,4 +1,5 @@
-﻿using TimeSheetHrEmployeeApp.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using TimeSheetHrEmployeeApp.Context;
 using TimeSheetHrEmployeeApp.Interface;
 using TimeSheetHrEmployeeApp.Models;
 
@@ -48,7 +49,7 @@ namespace TimeSheetHrEmployeeApp.Repositories
             var existingProfile = GetById(entity.ProfileId);
             if (existingProfile != null)
             {
-                _context.Entry(existingProfile).CurrentValues.SetValues(entity);
+                _context.Entry<Profile>(existingProfile).State = EntityState.Modified;
                 _context.SaveChanges();
                 return existingProfile;
             }

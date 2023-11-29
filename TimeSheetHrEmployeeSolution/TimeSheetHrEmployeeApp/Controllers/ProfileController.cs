@@ -49,7 +49,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
         /// <param name="profileDTO"></param>
         /// <returns></returns>
 
-        [HttpPost("UpdateProfile")]
+        [HttpPut]
         public IActionResult UpdateProfile(int id, ProfileDTO profileDTO)
         {
             var updatedProfile = _profileService.UpdateProfile(id,profileDTO);

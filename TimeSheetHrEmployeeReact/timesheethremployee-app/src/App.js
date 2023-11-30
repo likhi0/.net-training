@@ -8,26 +8,26 @@ import Tasks from './components/Tasks';
 import Approval from './components/Approval';
 import LeaveRequests from './components/LeaveRequests';
 import TimeSheetList from './components/TimeSheetList';
+import DeleteProfiles from './components/DeleteProfiles';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Menu from './components/Menu';
 //import App1 from'./components/App1';
 function App() {
   return (
-    // <div className="App">
-    //   <div className="Components">
-    //     <div className="row">
-    //       <div classsName="AddProfiles">
-    //         <AddProfiles/>
-    //       </div>
-    //     </div>
-    //   </div>
-      
-    // </div>
-    //  <div className="app-container">
-    //   <h1 className="center">TimeSheetHREmployee</h1>
-    //   <LoginUser/>
-    //  </div>
     <div>
-      <TimeSheetList/>
-    </div>
+    <BrowserRouter>
+      <Menu/>
+      <Routes>
+        <Route path="/Register" element={<RegisterUser/>}/>
+        <Route path="/AddProfiles" element={<AddProfiles />} />
+        <Route path="/DeleteProfiles" element={<DeleteProfiles />} />
+        
+        <Route path="TimeSheet" element={<TimeSheet/>}/>
+        
+      </Routes>
+    </BrowserRouter>
+  </div>
+   
   );
 }
 

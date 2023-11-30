@@ -17,8 +17,8 @@ namespace TimeSheetHrEmployeeApp
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
-            //builder.Services.AddControllers();
-            //builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
             #region Swagger
             builder.Services.AddSwaggerGen(opt =>
             {
@@ -116,14 +116,14 @@ namespace TimeSheetHrEmployeeApp
             app.UseRouting();
             app.UseCors("reactApp");
 
-            app.UseAuthorization();
-            app.UseAuthentication();
             //app.UseAuthorization();
-            //app.MapControllers();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.MapControllers();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            //app.MapControllerRoute(
+                //name: "default",
+               // pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

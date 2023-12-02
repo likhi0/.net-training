@@ -45,9 +45,9 @@ namespace TimeSheetHrEmployeeApp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult Get(int timesheetid)
         {
-            var result = _approvalService.GetAllApprovals();
+            var result = _approvalService.GetAllApprovals(timesheetid);
             if (result != null)
             {
                 _logger.LogInformation("Get all approvals");

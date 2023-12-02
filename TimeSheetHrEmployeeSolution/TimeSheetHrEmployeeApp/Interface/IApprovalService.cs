@@ -6,6 +6,6 @@ namespace TimeSheetHrEmployeeApp.Interface
     {
         bool AddApproval(Approval approval);
 
-        IList<Approval> GetAllApprovals();
+        IList<Approval> GetAllApprovals(int timesheetid);
     }
 }

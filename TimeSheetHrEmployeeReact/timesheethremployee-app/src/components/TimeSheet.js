@@ -7,6 +7,7 @@ function TimeSheet(){
     const [period,setPeriod] = useState("");
     const [hoursWorked,setHoursWorked] = useState("");
     const [overtime,setOverTime] = useState("");
+    const [comments,setComments]=useState("");
     var [usernameError,setUsernameError]=useState("");
     var checkUSerData = ()=>{
         if(username=='')
@@ -19,6 +20,8 @@ function TimeSheet(){
         if(hoursWorked=='')
             return false;
         if(overtime=='')
+            return false;
+        if(comments=='')
             return false;
         return true;
     }
@@ -34,7 +37,8 @@ function TimeSheet(){
             username: username,
             period:	period,
             hoursWorked:hoursWorked,
-            overtime:overtime
+            overtime:overtime,
+            comments:comments
     })
         .then((userData)=>{
             console.log(userData)
@@ -63,6 +67,9 @@ function TimeSheet(){
                 )}
             </select>
             <br/>
+            <label className="form-control">comments</label>
+            <input type="text" className="form-control" value={comments} 
+                    onChange={(e)=>{setComments(e.target.value)}}/>
             <button className="btn btn-primary button" onClick={Enter}>Enter</button>
             
             <button className="btn btn-danger button">Cancel</button>

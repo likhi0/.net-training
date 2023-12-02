@@ -40,9 +40,9 @@ namespace TimeSheetHrEmployeeApp.Services
         /// </summary>
         /// <returns></returns>
 
-        public IList<Approval> GetAllApprovals()
+        public IList<Approval> GetAllApprovals(int timesheetid)
         {
-            var approval = _approvalRepository.GetAll();
+            var approval = _approvalRepository.GetAll().Where(t => t.TimesheetID == timesheetid).ToList(); 
             if (approval != null)
             {
                 return approval.ToList();

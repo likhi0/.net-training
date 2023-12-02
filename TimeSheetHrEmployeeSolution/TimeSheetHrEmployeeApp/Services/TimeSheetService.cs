@@ -57,11 +57,11 @@ namespace TimeSheetHrEmployeeApp.Services
         /// <param name="id"></param>
         /// <param name="timeSheet"></param>
         /// <returns></returns>
-        public TimeSheet UpdateTimeSheet(int id,TimeSheet timeSheet)
+        public TimeSheet UpdateTimeSheet(TimeSheet timeSheet)
         {
            
             
-                var existingTimeSheet = _TimesheetRepository.GetById(id);
+                var existingTimeSheet = _TimesheetRepository.GetById(timeSheet.TimesheetID);
                 if (existingTimeSheet != null)
                 {
                     existingTimeSheet.Username = timeSheet.Username;

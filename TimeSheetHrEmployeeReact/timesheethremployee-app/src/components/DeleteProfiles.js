@@ -1,38 +1,40 @@
-import { useState } from "react";
-//import './DeleteProfile.css';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function DeleteProfiles(){
-    const [id,setProfileId] = useState("");
-    var profile;
-    var clickDelete = ()=>{
-        alert('You clicked the button');
-       profile={
-        "ProfileId":id,
-        }
-        console.log(profile);
-        fetch('http://localhost:5191/api/Profile',
-        {
-            method:'Delete',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(profile)
-        }).then(
-            ()=>{
-                alert("Profile Deleted");
-            }
-        ).catch((e)=>{
-            console.log(e)
-        })
+const ProfileDeleteComponent = () => {
+  const [username, setUsername] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:5191/api/Profile/DeleteProfile?username=${username}`);
+
+      if (response.status === 200) {
+        setMessage('Profile deleted successfully');
+      } else {
+        setMessage('Failed to delete profile');
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        setMessage('Profile not found. Please check the username and try again.');
+      } else {
+        console.error('Error deleting profile:', error);
+        setMessage('Failed to delete profile');
+      }
     }
-    return(
-        <div className="inputcontainer">
-            <label className="form-control" for="ProfileId">ProfileId</label>
-            <input id="pProfileId" type="text" className="form-control" value={id} onChange={(e)=>{setProfileId(e.target.value)}}/>
-            <button onClick={clickDelete} className="btn btn-primary">DeleteProfiles</button>
-        </div>
-    );
+  };
 
-}
-export default DeleteProfiles;
+  return (
+    <div>
+      <h2>Delete Profile</h2>
+      <label>
+        Username:
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+      </label>
+      <button onClick={handleDelete}>Delete Profile</button>
+      <p>{message}</p>
+    </div>
+  );
+};
+
+export default ProfileDeleteComponent;

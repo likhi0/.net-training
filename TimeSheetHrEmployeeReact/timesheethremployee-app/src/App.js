@@ -3,19 +3,23 @@ import './App.css';
 import AddProfiles from './components/AddProfiles';
 import RegisterUser from './components/RegisterUser';
 import TimeSheet from './components/TimeSheet';
+import UpdateTimeSheet from './components/UpdateTimeSheet';
 import LoginUser from './components/LoginUser';
 import Tasks from './components/Tasks';
+import TaskList from './components/TaskList';
 import Approval from './components/Approval';
+import ApprovalList from './components/ApprovalList';
 import LeaveRequests from './components/LeaveRequests';
 import TimeSheetList from './components/TimeSheetList';
 import DeleteProfiles from './components/DeleteProfiles';
+import UpdateProfile from './components/UpdateProfile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './components/Menu';
 //import App1 from'./components/App1';
 function App() {
   return (
     <div>
-    <BrowserRouter>
+    {/* <BrowserRouter>
       <Menu/>
       <Routes>
         <Route path="/Register" element={<RegisterUser/>}/>
@@ -25,7 +29,8 @@ function App() {
         <Route path="TimeSheet" element={<TimeSheet/>}/>
         
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
+    <UpdateTimeSheet/>
   </div>
    
   );

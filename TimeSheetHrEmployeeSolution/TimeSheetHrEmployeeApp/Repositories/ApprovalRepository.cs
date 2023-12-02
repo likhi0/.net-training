@@ -35,6 +35,9 @@ namespace TimeSheetHrEmployeeApp.Repositories
 
         public IList<Approval> GetAll()
         {
+            if (_context.Approvals.Count() == 0)
+                return null;
+
             return _context.Approvals.ToList();
         }
 

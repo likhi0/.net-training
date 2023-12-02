@@ -6,8 +6,8 @@ namespace TimeSheetHrEmployeeApp.Interface
     public interface IProfileService
     {
         bool AddProfile(ProfileDTO profileDTO);
-        ProfileDTO UpdateProfile(int id ,ProfileDTO profileDTO);
-        bool DeleteProfile(int id);
+        ProfileDTO UpdateProfile(ProfileDTO profileDTO);
+        bool DeleteProfile(string username);
         
     }
 }

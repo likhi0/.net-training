@@ -51,10 +51,10 @@ namespace TimeSheetHrEmployeeApp.Services
         /// <param name="id"></param>
         /// <param name="profileDTO"></param>
         /// <returns></returns>
-        public ProfileDTO UpdateProfile(int id, ProfileDTO profileDTO)
+        public ProfileDTO UpdateProfile( ProfileDTO profileDTO)
         {
            
-            var existingProfile = _profileRepository.GetById(id);
+            var existingProfile = _profileRepository.GetById(profileDTO.ProfileId);
             if (existingProfile != null)
             {
 
@@ -81,18 +81,19 @@ namespace TimeSheetHrEmployeeApp.Services
         /// <param name="id"></param>
         /// <returns></returns>
 
-        public bool DeleteProfile(int id)
+        public bool DeleteProfile(string username)
         {
 
-            var result = _profileRepository.Delete(id);
+            var result = _profileRepository.GetAll()
+                .FirstOrDefault(u => u.Username == username);
 
             if (result != null)
             {
-
+                _profileRepository.Delete(result.ProfileId);
                 return true;
             }
 
-            return false;
+            throw new NoProfileFoundException();
         }
 
        

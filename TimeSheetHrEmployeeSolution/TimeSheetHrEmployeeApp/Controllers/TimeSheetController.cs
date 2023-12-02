@@ -44,9 +44,9 @@ namespace TimeSheetHrEmployeeApp.Controllers
         /// <param name="timeSheet"></param>
         /// <returns></returns>
         [HttpPut]
-        public IActionResult UpdateTimeSheet(int id,TimeSheet timeSheet)
+        public IActionResult UpdateTimeSheet(TimeSheet timeSheet)
         {
-            var updatedProfile = _TimesheetService.UpdateTimeSheet(id,timeSheet);
+            var updatedProfile = _TimesheetService.UpdateTimeSheet(timeSheet);
 
             if (updatedProfile != null)
             {

@@ -50,9 +50,9 @@ namespace TimeSheetHrEmployeeApp.Controllers
         /// <returns></returns>
 
         [HttpPut]
-        public IActionResult UpdateProfile(int id, ProfileDTO profileDTO)
+        public IActionResult UpdateProfile( ProfileDTO profileDTO)
         {
-            var updatedProfile = _profileService.UpdateProfile(id,profileDTO);
+            var updatedProfile = _profileService.UpdateProfile(profileDTO);
 
             if (updatedProfile != null)
             {
@@ -69,9 +69,9 @@ namespace TimeSheetHrEmployeeApp.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("DeleteProfile")]
-        public IActionResult DeleteProfile(int id)
+        public IActionResult DeleteProfile(string username)
         { 
-            var result = _profileService.DeleteProfile(id);
+            var result = _profileService.DeleteProfile(username);
             if(result)
             {
                 _logger.LogInformation("Delete Profile");

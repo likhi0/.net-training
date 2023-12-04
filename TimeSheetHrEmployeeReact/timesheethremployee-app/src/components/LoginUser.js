@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './RegisterUser.css';
+import './Login.css';
 import axios from "axios";
 
 function LoginUser(){
@@ -41,6 +41,9 @@ function LoginUser(){
     })
         .then((userData)=>{
             console.log(userData)
+            localStorage.setItem('username', username);
+            localStorage.setItem('role', role);
+      
         })
         .catch((err)=>{
             console.log(err)
@@ -67,6 +70,17 @@ function LoginUser(){
             <button className="btn btn-primary button" onClick={Login}>Login</button>
             
             <button className="btn btn-danger button">Cancel</button>
+            <div className="row mt-9 ">
+                      <div class="col-sm-3"></div>
+                      <div class="col-sm-3">
+                        <a
+                          href="/Register"
+                          className="text-decoration-black mb-3 text-info fw-bold "
+                        >
+                          NewUser?
+                        </a>
+                      </div>
+            </div>
         </form>
     );
 }

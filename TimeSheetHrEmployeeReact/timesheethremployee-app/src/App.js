@@ -13,24 +13,40 @@ import LeaveRequests from './components/LeaveRequests';
 import TimeSheetList from './components/TimeSheetList';
 import DeleteProfiles from './components/DeleteProfiles';
 import UpdateProfile from './components/UpdateProfile';
+import LeaveRequest from './components/LeaveRequest';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './components/Menu';
+import Home from './components/Home';
+import Logout from './components/Logout';
 //import App1 from'./components/App1';
 function App() {
   return (
     <div>
-    {/* <BrowserRouter>
+      <BrowserRouter>
       <Menu/>
       <Routes>
+        <Route path="/Home" element={<Home/>}/>
         <Route path="/Register" element={<RegisterUser/>}/>
+        <Route path="/Login" element={<LoginUser/>}/>
         <Route path="/AddProfiles" element={<AddProfiles />} />
+        <Route path="/UpdateProfile" element={<UpdateProfile/>}/>
         <Route path="/DeleteProfiles" element={<DeleteProfiles />} />
-        
+        <Route path="/Logout" element={<Logout/>}/>
         <Route path="TimeSheet" element={<TimeSheet/>}/>
+        <Route path="/TimeSheetList" element={<TimeSheetList/>}/>
+        <Route path="/UpdateTimeSheet" element={<UpdateTimeSheet/>}/>
+        <Route path="/LeaveRequest" element={<LeaveRequest/>}/>
+        <Route path="/LeaveList" element={<LeaveRequests/>}/>
+        <Route path="/Approval" element={<Approval/>}/>
+        <Route path="/ApprovalList" element={<ApprovalList/>}/>
+        <Route path="/Tasks" element={<Tasks/>}/>
+        <Route path="/TaskList" element={<TaskList/>}/>
+        
         
       </Routes>
-    </BrowserRouter> */}
-    <UpdateTimeSheet/>
+    </BrowserRouter>  
+    
+    
   </div>
    
   );

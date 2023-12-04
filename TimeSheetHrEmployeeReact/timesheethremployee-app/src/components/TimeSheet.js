@@ -73,6 +73,9 @@ function TimeSheet(){
             <button className="btn btn-primary button" onClick={Enter}>Enter</button>
             
             <button className="btn btn-danger button">Cancel</button>
+            <button className="btn btn-danger button">
+            <a class="nav-link" aria-current="page" href="/TimeSheetList">List</a>            
+            </button>
         </form>
     );
         

@@ -824,3 +824,13 @@ UPDATE [TimeSheets] SET [Comments] = @p0, [HoursWorked] = @p1, [OverTime] = @p2,
 WHERE [TimesheetID] = @p5;
 SELECT @@ROWCOUNT;
 2023-12-02 16:06:42,174 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.TimeSheetController.UpdateTimeSheet[53] - Updated Profile
+2023-12-02 20:26:04,480 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-12-02 20:26:05,070 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-12-02 20:26:05,099 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-12-02 20:26:05,107 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-12-02 20:26:23,029 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-02 20:26:25,665 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (141ms) [Parameters=[@__key_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [u].[Username], [u].[Key], [u].[Password], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__key_0
+2023-12-02 20:26:27,144 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.UserController.Login[64] - user login

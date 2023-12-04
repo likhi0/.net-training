@@ -34,6 +34,7 @@ function AddProfiles(){
         })
     }
     return(
+        <div className ="body">
         <div className="inputcontainer">
             <label className="form-control" for="pusername">UserName</label>
             <input id="pusername" type="text" className="form-control" value={username} onChange={(e)=>{setUsername(e.target.value)}}/>
@@ -46,6 +47,7 @@ function AddProfiles(){
             <label className="form-control"  for="ptitle">JobTitle</label>
             <input id="ptitle" type="text" className="form-control" value={jobTitle} onChange={(e)=>{setJobTitle(e.target.value)}}/>
             <button onClick={clickAdd} className="btn btn-primary">AddProfiles</button>
+            </div> 
         </div>
     );
 

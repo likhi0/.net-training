@@ -37,4 +37,14 @@
     font-weight:bold ;
 
   }
+  .app-container {
+    background-color:lightblue; /* Replace with your preferred background color */
+    height: 100vh; /* Optional: Set the height of the container to the full viewport height */
+    
+  }
+  .center{
+    text-align: center;
+    color:brown;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   
+  }

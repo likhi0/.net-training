@@ -1,0 +1,44 @@
+/* Login.css */
+
+body {
+    background-color:palevioletred; /* Set a background color for the body, adjust as needed */
+  }
+  
+  .registerForm {
+    max-width: 400px;
+    margin: 10% auto; /* Center the form vertically with a margin-top of 10% */
+    background-color: grey; /* Set the form background color */
+    padding: 20px;
+    border-radius: 8px; /* Add border-radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  }
+  
+  .form-control {
+    margin-bottom: 10px;
+  }
+  
+  .form-select {
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .button {
+    width: 30%;
+  }
+  
+  .alert {
+    margin-bottom: 10px;
+  }
+  .highlight-label{
+    font-weight:bold ;
+
+  }
+  .text-decoration{
+    color: black;
+  }
+  /* Add any other styles as needed */
+  

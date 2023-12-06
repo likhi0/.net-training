@@ -4,6 +4,7 @@ using TimeSheetHrEmployeeApp.Interface;
 using TimeSheetHrEmployeeApp.Models;
 using TimeSheetHrEmployeeApp.Models.DTO;
 using TimeSheetHrEmployeeApp.Exceptions;
+using TimeSheetHrEmployeeApp.Repositories;
 
 namespace TimeSheetHrEmployeeApp.Services
 {
@@ -96,6 +97,14 @@ namespace TimeSheetHrEmployeeApp.Services
             throw new NoProfileFoundException();
         }
 
-       
+        public Profile GetUserProfile(string username)
+        {
+            var user = _profileRepository.GetAll().FirstOrDefault(u => u.Username == username);
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
+        }
     }
 }

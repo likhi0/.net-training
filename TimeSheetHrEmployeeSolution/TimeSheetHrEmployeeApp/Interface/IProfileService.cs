@@ -8,6 +8,6 @@ namespace TimeSheetHrEmployeeApp.Interface
         bool AddProfile(ProfileDTO profileDTO);
         ProfileDTO UpdateProfile(ProfileDTO profileDTO);
         bool DeleteProfile(string username);
-        
+        Profile GetUserProfile(string username);
     }
 }

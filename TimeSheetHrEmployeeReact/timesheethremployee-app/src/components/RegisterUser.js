@@ -1,69 +1,88 @@
-import { useState } from "react";
-import './RegisterUser.css';
+import React, { useState } from "react";
 import axios from "axios";
+import './RegisterUser.css';
 
-function RegisterUser(){
-    const roles =["Employee","HR"];
-    const [username,setUsername] = useState("");
-    const [password,setPassword] = useState("");
-    //const [repassword,setrePassword] = useState("");
-    const [role,setRole] = useState("");
-    var [usernameError,setUsernameError]=useState("");
-    var checkUSerData = ()=>{
-        if(username=='')
-        {
+function RegisterUser() {
+    const roles = ["Employee", "HR"];
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [role, setRole] = useState("");
+    const [usernameError, setUsernameError] = useState("");
+
+    const checkUserData = () => {
+        if (username === '') {
             setUsernameError("Username cannot be empty");
             return false;
         }
-           
-        if(password=='')
+
+        if (password === '') {
             return false;
-        if(role=='Select Role')
+        }
+
+        if (role === 'select') { // Change 'Select Role' to 'select'
             return false;
+        }
+
         return true;
     }
-    const signUp = (event)=>{
+
+    const signUp = (event) => {
         event.preventDefault();
-        var checkData = checkUSerData();
-        if(checkData==false)
-        {
-            alert('please check yor data')
+
+        const isValidData = checkUserData();
+
+        if (!isValidData) {
+            alert('Please check your data');
             return;
         }
-        
-        axios.post("http://localhost:5191/api/HrEmployee",{
+
+        axios.post("http://localhost:5191/api/HrEmployee", {
             username: username,
-            role:	role,
-            password:password
-    })
-        .then((userData)=>{
-            console.log(userData)
+            role: role,
+            password: password
         })
-        .catch((err)=>{
-            console.log(err)
+        .then((userData) => {
+            console.log(userData);
         })
+        .catch((err) => {
+            console.log(err);
+        });
     }
-    return(
+
+    return (
+
         <form className="registerForm">
             <label className="form-control">Username</label>
-            <input type="text" className="form-control" value={username}
-                    onChange={(e)=>{setUsername(e.target.value)}}/>
-           <label className="alert alert-danger">{usernameError}</label>
+            <input
+                type="text"
+                className="form-control"
+                value={username}
+                onChange={(e) => { setUsername(e.target.value) }}
+            />
+            <label className="alert alert-danger">{usernameError}</label>
             <label className="form-control">Password</label>
-            <input type="password" className="form-control" value={password}
-                    onChange={(e)=>{setPassword(e.target.value)}}/>
-            <label className="form-control">Role</label>
-            <select className="form-select" onChange={(e)=>{setRole(e.target.value)}}>
+            <input
+                type="password"
+                className="form-control"
+                value={password}
+                onChange={(e) => { setPassword(e.target.value) }}
+            />
+
+            <select
+                className="form-select"
+                onChange={(e) => { setRole(e.target.value) }}
+                value={role}
+            >
                 <option value="select">Select Role</option>
-                {roles.map((r)=>
+                {roles.map((r) => (
                     <option value={r} key={r}>{r}</option>
-                )}
+                ))}
             </select>
-            <br/>
+            <br />
             <button className="btn btn-primary button" onClick={signUp}>Sign Up</button>
             
-            <button className="btn btn-danger button">Cancel</button>
         </form>
     );
 }
+
 export default RegisterUser;

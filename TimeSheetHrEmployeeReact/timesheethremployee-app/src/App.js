@@ -13,6 +13,8 @@ import LeaveRequests from './components/LeaveRequests';
 import TimeSheetList from './components/TimeSheetList';
 import DeleteProfiles from './components/DeleteProfiles';
 import UpdateProfile from './components/UpdateProfile';
+import GetProfile from './components/GetProfile';
+import UserProfile from './components/UserProfile';
 import LeaveRequest from './components/LeaveRequest';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './components/Menu';
@@ -29,6 +31,7 @@ function App() {
         <Route path="/Register" element={<RegisterUser/>}/>
         <Route path="/Login" element={<LoginUser/>}/>
         <Route path="/AddProfiles" element={<AddProfiles />} />
+        <Route path="/GetProfiles" element={<GetProfile />} />
         <Route path="/UpdateProfile" element={<UpdateProfile/>}/>
         <Route path="/DeleteProfiles" element={<DeleteProfiles />} />
         <Route path="/Logout" element={<Logout/>}/>
@@ -41,6 +44,7 @@ function App() {
         <Route path="/ApprovalList" element={<ApprovalList/>}/>
         <Route path="/Tasks" element={<Tasks/>}/>
         <Route path="/TaskList" element={<TaskList/>}/>
+        <Route path="/UserProfile" element={<UserProfile/>}/>
         
         
       </Routes>

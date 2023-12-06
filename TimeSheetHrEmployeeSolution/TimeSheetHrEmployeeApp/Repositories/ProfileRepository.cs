@@ -35,6 +35,8 @@ namespace TimeSheetHrEmployeeApp.Repositories
 
         public IList<Profile> GetAll()
         {
+            if (_context.Profiles.Count() == 0)
+                return null;
             return _context.Profiles.ToList();
         }
 

@@ -1,4 +1,5 @@
 ﻿using log4net.Repository.Hierarchy;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using TimeSheetHrEmployeeApp.Interface;
 using TimeSheetHrEmployeeApp.Models;
 using TimeSheetHrEmployeeApp.Models.DTO;
+using TimeSheetHrEmployeeApp.Services;
 
 namespace TimeSheetHrEmployeeApp.Controllers
 {
@@ -80,6 +82,19 @@ namespace TimeSheetHrEmployeeApp.Controllers
             _logger.LogError("profile delete failed");
             return BadRequest("not delete");
         }
+        
+        [HttpGet]
+        public ActionResult GetUserProfile(string Username)
+        {
+            var result = _profileService.GetUserProfile(Username);
+            if (result != null)
+            {
+                _logger.LogInformation("Get user profile");
+                return Ok(result);
+            }
 
+            _logger.LogError("failed to get profile");
+            return BadRequest("No profile found");
+        }
     }
 }

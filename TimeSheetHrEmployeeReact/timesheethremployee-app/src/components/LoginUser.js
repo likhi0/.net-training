@@ -1,87 +1,126 @@
 import { useState } from "react";
-import './Login.css';
 import axios from "axios";
+import './Login.css'; // Import any external CSS file if needed
 
-function LoginUser(){
-    const roles =["Employee","HR"];
-    const [username,setUsername] = useState("");
-    const [password,setPassword] = useState("");
-    //const [repassword,setrePassword] = useState("");
-    const [role,setRole] = useState("");
-    var [usernameError,setUsernameError]=useState("");
-    var [passwordError,setPasswordError]=useState("");
-    var checkUSerData = ()=>{
-        if(username=='')
-        {
-            setUsernameError("Username cannot be empty");
-            return false;
-        }
-        if(password=='')
-        {
-            setPasswordError("Password cannot be empty");
-            return false;
-        }
-        if(role=='Select Role')
-            return false;
-        return true;
+function LoginUser() {
+  const roles = ["Employee", "HR"];
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [loginError, setLoginError] = useState("");
+
+  const checkUserData = () => {
+    if (username === '') {
+      setUsernameError("Username cannot be empty");
+      return false;
     }
-    const Login = (event)=>{
-        event.preventDefault();
-        var checkData = checkUSerData();
-        if(checkData==false)
-        {
-            alert('please check yor data')
-            return;
-        }
-        
-        axios.post("http://localhost:5191/api/HrEmployee/Login",{
-            username: username,
-            role:	role,
-            password:password
+    if (password === '') {
+      setPasswordError("Password cannot be empty");
+      return false;
+    }
+    if (role === 'select') {
+      setLoginError("Please select a role");
+      return false;
+    }
+    return true;
+  }
+
+  const login = (event) => {
+    event.preventDefault();
+    const isValidData = checkUserData();
+
+    if (!isValidData) {
+      return;
+    }
+
+    axios.post("http://localhost:5191/api/HrEmployee/Login", {
+      username: username,
+      role: role,
+      password: password
     })
-        .then((userData)=>{
-            console.log(userData)
-            localStorage.setItem('username', username);
-            localStorage.setItem('role', role);
-      
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    }
-    return(
-        <form className="registerForm">
-            <label className="form-control">Username</label>
-            <input type="text" className="form-control" value={username} placeholder="Enter the email"
-                    onChange={(e)=>{setUsername(e.target.value)}}/>
-           <label className="alert alert-danger">{usernameError}</label>
-            <label className="form-control">Password</label>
-            <input type="password" className="form-control" value={password} placeholder="Enter password"
-                    onChange={(e)=>{setPassword(e.target.value)}}/>
-            <label className="alert alert-danger">{passwordError}</label>
-            <label className="form-control">Role</label>
-            <select className="form-select" onChange={(e)=>{setRole(e.target.value)}}>
-                <option value="select">Select Role</option>
-                {roles.map((r)=>
-                    <option value={r} key={r}>{r}</option>
-                )}
-            </select>
-            <br/>
-            <button className="btn btn-primary button" onClick={Login}>Login</button>
-            
-            <button className="btn btn-danger button">Cancel</button>
-            <div className="row mt-9 ">
-                      <div class="col-sm-3"></div>
-                      <div class="col-sm-3">
-                        <a
-                          href="/Register"
-                          className="text-decoration-black mb-3 text-info fw-bold "
-                        >
-                          NewUser?
-                        </a>
-                      </div>
+    .then((response) => {
+      console.log(response);
+      const userData = response.data;
+      localStorage.setItem('username', username);
+      localStorage.setItem('role', role);
+      const token = userData.token;
+      localStorage.setItem("token", token);
+      setLoginError(""); // Clear any previous login errors
+      alert("Login successful");
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoginError("Invalid username, password, or role"); 
+    });
+  }
+
+  return (
+    <div className='login-root'>
+      <div className='box-root padding-top--24 flex-flex flex-direction--column' style={{ flexGrow: 1, zIndex: 9 }}>
+        <div className='formbg-outer'>
+          <div className='formbg'>
+            <div className='formbg-inner padding-horizontal--48'>
+              <span className='padding-bottom--15'>Sign in to your account</span>
+              <form id='stripe-login' onSubmit={login}>
+                <div className='field padding-bottom--24'>
+                  <label htmlFor='email'>Email</label>
+                  <input
+                    type='email'
+                    name='email'
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className='field input'
+                  />
+                  <label className='alert alert-danger'>{usernameError}</label>
+                </div>
+                <div className='field padding-bottom--24'>
+                  <div className='grid--50-50'>
+                    <label htmlFor='password'>Password</label>
+                    <div className='reset-pass'>
+                      <a href='#'>Forgot your password?</a>
+                    </div>
+                  </div>
+                  <input
+                    type='password'
+                    name='password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className='field input'
+                  />
+                  <label className='alert alert-danger'>{passwordError}</label>
+                </div>
+                <div className='field padding-bottom--24'>
+                  <label htmlFor='role'>Role</label>
+                  <select
+                    className='field select'
+                    onChange={(e) => setRole(e.target.value)}
+                    value={role}
+                  >
+                    <option value=''>Select Role</option>
+                    {roles.map((r) => (
+                      <option value={r} key={r}>
+                        {r}
+                      </option>
+                    ))}
+                  </select>
+                  
+                </div>
+                <div className='footer-link padding-top--24'>
+                  <span>Don't have an account? <a href='/Register'>Sign up</a></span>
+                </div>
+                <div className='field padding-bottom--24'>
+                  <input type='submit' name='submit' value='Continue' className='field input' />
+                </div>
+              </form>
             </div>
-        </form>
-    );
-}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+  }
+
+
 export default LoginUser;

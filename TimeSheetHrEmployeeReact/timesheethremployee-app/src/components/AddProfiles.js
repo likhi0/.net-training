@@ -28,6 +28,7 @@ function AddProfiles(){
         }).then(
             ()=>{
                 alert("Profile Added");
+                
             }
         ).catch((e)=>{
             console.log(e)

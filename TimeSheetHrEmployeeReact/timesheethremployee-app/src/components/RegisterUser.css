@@ -1,50 +1,61 @@
 .registerForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 50px;
-    background-color: gray;
-  }
-  
-  .form-control {
-    margin-bottom: 10px;
-    width: 100%;
-    
-  }
-  
-  .form-select {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .button {
-    margin-top: 10px;
-  }
-  
-  .alert-danger {
-    color: red;
-    margin-bottom: 1px;
-  }
-  .centre{
-    text-align: center;
-  }
-  .highlight-label{
-    font-weight:bold ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 90px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 90px;
+  background-color: orange;
+}
 
-  }
-  .app-container {
-    background-color:lightblue; /* Replace with your preferred background color */
-    height: 100vh; /* Optional: Set the height of the container to the full viewport height */
-    
-  }
-  .center{
-    text-align: center;
-    color:brown;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
-  }
+.form-control {
+  margin-bottom: 10px;
+  width: 100%;
+  display:ruby-base;
+}
+
+.form-select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.button {
+  margin-top: 10px;
+}
+
+.alert-danger {
+  color: red;
+  margin-bottom: 1px;
+}
+
+.centre {
+  text-align: center;
+}
+
+.highlight-label {
+  font-weight: bold;
+}
+
+.app-container {
+  background-color: black;
+  /* Replace with your preferred background color */
+  height: 100vh;
+  /* Optional: Set the height of the container to the full viewport height */
+}
+
+.center {
+  text-align: center;
+  color: brown;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Additional style for a horizontal layout */
+.registerForm label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Add any other specific styles as needed */

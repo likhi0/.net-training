@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function TimeSheetList() {
-  const [username,setUsername] = useState("");
+  const UserName = localStorage.getItem('username');
   const [timeSheetList, setTimeSheetList] = useState([]);
   var getTimeSheet = (event)=>{
     event.preventDefault();
-    console.log(username);
+    console.log(UserName);
     axios.get("http://localhost:5191/api/TimeSheet",{
       params: {
-        username: username,
+        "UserName": UserName,
       },
         
        
@@ -36,8 +36,8 @@ function TimeSheetList() {
       <br/>   
       <div class="row"> 
         <label className="form-control highlight-label">Username</label>
-        <input id="pusername" type="text" class="form-control" value={username} placeholder="Enter the Email"
-         onChange={(e)=>{setUsername(e.target.value)}}/>
+        <input id="pusername" type="text" class="form-control" value={UserName} placeholder="Enter the Email"
+        />
       </div>
       <div class="row">
           <button className="btn btn-success" onClick={getTimeSheet}>Get All TimeSheets</button>

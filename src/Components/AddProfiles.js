@@ -22,7 +22,8 @@ function AddProfiles(){
             method:'POST',
             headers:{
                 'Accept':'application/json',
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                Authentication: 'Bearer ${local}'
             },
             body:JSON.stringify(profile)
         }).then(

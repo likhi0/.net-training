@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './AddProfile.css';
+import './UpdateProfiles.css';
 //aimport axios from "axios";
 
 function UpdateProfiles(){

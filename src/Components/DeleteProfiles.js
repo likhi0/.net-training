@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './AddProfile.css';
+import './DeleteProfiles.css';
 
 function DeleteProfiles(){
     const [ProfileId,setProfileId] = useState("");

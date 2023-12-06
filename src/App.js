@@ -32,7 +32,7 @@ function App() {
     //   <LoginUser/>
     //  </div>
     <div>
-      < RegisterUser/>
+      <DeleteProfiles/>
     </div>
   );
 }

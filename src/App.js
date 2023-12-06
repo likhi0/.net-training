@@ -32,7 +32,7 @@ function App() {
     //   <LoginUser/>
     //  </div>
     <div>
-      < TimeSheet/>
+      < RegisterUser/>
     </div>
   );
 }

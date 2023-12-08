@@ -11,7 +11,7 @@ namespace TimeSheetHrEmployeeApp.Models
         public string Role { get; set; }
         public byte[] Key { get; set; }
         public ICollection<TimeSheet> ?Timesheets { get; set; }
-        public ICollection<LeaveRequest> LeaveRequests { get; set; }
+        public ICollection<LeaveRequest> ?LeaveRequests { get; set; }
         public Profile Profiles { get; set; }
     }
 }

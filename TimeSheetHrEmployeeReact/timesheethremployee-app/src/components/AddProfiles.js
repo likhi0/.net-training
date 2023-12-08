@@ -2,7 +2,7 @@ import { useState } from "react";
 import './AddProfile.css';
 
 function AddProfiles(){
-    const [username,setUsername] = useState("");
+    const userName = localStorage.getItem("username");
     const [firstName,setFirstName] = useState("");
     const [lastName,setLastName] = useState("");
     const [contactNumber,setContactNumber] = useState("");
@@ -11,7 +11,7 @@ function AddProfiles(){
     var clickAdd = ()=>{
         alert('You clicked the button');
        profile={
-        "username":username,
+        "username":userName,
         "firstName":firstName,
         "lastName":lastName,
         "contactNumber":contactNumber,
@@ -37,8 +37,8 @@ function AddProfiles(){
     return(
         <div className ="body">
         <div className="inputcontainer">
-            <label className="form-control" for="pusername">UserName</label>
-            <input id="pusername" type="text" className="form-control" value={username} onChange={(e)=>{setUsername(e.target.value)}}/>
+            <label className="form-control" for="pusername">Email</label>
+            <input id="pusername" type="text" className="form-control" value={userName} />
             <label className="form-control"  for="pfirstname">FirstName</label>
             <input id="pfirstname" type="text" className="form-control" value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}/>
             <label className="form-control"  for="plastname">LastName</label>
@@ -49,7 +49,11 @@ function AddProfiles(){
             <input id="ptitle" type="text" className="form-control" value={jobTitle} onChange={(e)=>{setJobTitle(e.target.value)}}/>
             <button onClick={clickAdd} className="btn btn-primary">AddProfiles</button>
             </div> 
+            <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height:"180%" }} alt="Timesheet" />
+      </div>
         </div>
+        
     );
 
 }

@@ -1,8 +1,6 @@
 ﻿using TimeSheetHrEmployeeApp.Models;
 using TimeSheetHrEmployeeApp.Models.DTO;
 using TimeSheetHrEmployeeApp.Interface;
-using TimeSheetHrEmployeeApp.Models;
-using TimeSheetHrEmployeeApp.Models.DTO;
 using TimeSheetHrEmployeeApp.Exceptions;
 using TimeSheetHrEmployeeApp.Repositories;
 

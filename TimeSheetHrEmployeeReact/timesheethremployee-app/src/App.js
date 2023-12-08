@@ -20,6 +20,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './components/Menu';
 import Home from './components/Home';
 import Logout from './components/Logout';
+import Protected from './Protected';
 //import App1 from'./components/App1';
 function App() {
   return (
@@ -40,9 +41,9 @@ function App() {
         <Route path="/UpdateTimeSheet" element={<UpdateTimeSheet/>}/>
         <Route path="/LeaveRequest" element={<LeaveRequest/>}/>
         <Route path="/LeaveList" element={<LeaveRequests/>}/>
-        <Route path="/Approval" element={<Approval/>}/>
+        <Route path="/Approval" element={<Protected> <Approval/></Protected>}/>
         <Route path="/ApprovalList" element={<ApprovalList/>}/>
-        <Route path="/Tasks" element={<Tasks/>}/>
+        <Route path="/Tasks" element={<Protected> <Tasks/></Protected> }/>
         <Route path="/TaskList" element={<TaskList/>}/>
         <Route path="/UserProfile" element={<UserProfile/>}/>
         

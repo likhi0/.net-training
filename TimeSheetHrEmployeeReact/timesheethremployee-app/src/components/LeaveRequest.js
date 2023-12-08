@@ -1,82 +1,146 @@
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-function Approval(){
-    const statuses=["Approved","Pending"];
-    const [username,setUsername] = useState("");
-    const [startDate,setStartDate] = useState("");
-    const [endDate,setEndDate] = useState("");
-    const [status,setStatus] = useState("");
-    
-    var [usernameError,setUsernameError]=useState("");
-    var checkUSerData = ()=>{
-        if(username=='')
-        {
-            setUsernameError("Username cannot be empty");
-            return false;
-        }
-        if(status=='Select Status')
-            return false;
-        if(startDate=='')
-            return false;
-        if(endDate=='')
-            return false;
-        return true;
+function LeaveRequest() {
+  const UserName = localStorage.getItem('username');
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [status, setStatus] = useState("");
+
+  var [usernameError, setUsernameError] = useState("");
+  var checkUserData = () => {
+    if (UserName === '') {
+      setUsernameError("Username cannot be empty");
+      return false;
     }
-    const Enter = (event)=>{
-        event.preventDefault();
-        var checkData = checkUSerData();
-        if(checkData==false)
-        {
-            alert('please check yor data')
-            return;
-        }
-        axios.post("http://localhost:5191/api/LeaveRequest",{
-            username:username,
-            startDate:startDate,
-            endDate:endDate,
-            status:status
-        
-           
+    if (status === 'select') {
+      setUsernameError("Please select a status");
+      return false;
+    }
+    if (startDate === '' || endDate === '') {
+      setUsernameError("Please select start and end dates");
+      return false;
+    }
+    setUsernameError("");
+    return true;
+  }
+
+  const handleEnter = (event) => {
+    event.preventDefault();
+    var checkData = checkUserData();
+    if (!checkData) {
+      alert('Please check your data');
+      return;
+    }
+
+    axios.post("http://localhost:5191/api/LeaveRequest", {
+      username: UserName,
+      startDate: startDate,
+      endDate: endDate,
+      status: status
     })
-        .then((userData)=>{
-            console.log(userData)
-            alert("Data added successfully");
-            //toast.success("Data added successfully");
-        })
-        .catch((err)=>{
-            console.log(err)
-            alert("Error adding data");
-            //toast.error("Error adding data");
-        })
-    }
-    return(
-        <form className="registerForm">
-            <h3>Leave Request</h3>
-            <label className="form-control highlight-label">Username</label>
-            <input type="text" className="form-control" value={username} 
-                    onChange={(e)=>{setUsername(e.target.value)}}/>
-            <label className="alert alert-danger">{usernameError}</label>
-            <label className="form-control highlight-label">StartDate</label>
-            <input type="date" className="form-control" value={startDate} 
-                    onChange={(e)=>{setStartDate(e.target.value)}}/>
-            <label className="form-control highlight-label">EndDate</label>
-            <input type="date" className="form-control" value={endDate} 
-                    onChange={(e)=>{setEndDate(e.target.value)}}/>
-            <label className="form-control highlight-label">Status</label>
-            <select className="form-select highlight-label" onChange={(e)=>{setStatus(e.target.value)}}>
-                <option value="select">Select Status</option>
-                {statuses.map((r)=>
-                    <option value={r} key={r}>{r}</option>
-                )}
-            </select>
-            <br/>
-            <button className="btn btn-primary button" onClick={Enter}>Enter</button>
-            
-            <button className="btn btn-danger button">Cancel</button>
-        </form>
-    );
-        
+      .then((userData) => {
+        console.log(userData)
+        alert("Data added successfully");
+      })
+      .catch((err) => {
+        console.log(err)
+        alert("Error adding data");
+      })
+  }
 
+  return (
+    <div style={styles.container}>
+      <h3 style={styles.heading}>Leave Request</h3>
+      <table style={styles.table}>
+        <tbody>
+          <tr>
+            <td>
+              <label style={styles.label}>Username</label>
+              <input type="text" style={styles.input} value={UserName} readOnly />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label style={styles.label}>StartDate</label>
+              <input type="date" style={styles.input} value={startDate} onChange={(e) => { setStartDate(e.target.value) }} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label style={styles.label}>EndDate</label>
+              <input type="date" style={styles.input} value={endDate} onChange={(e) => { setEndDate(e.target.value) }} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label style={styles.label}>Reason</label>
+              <input style={styles.input} value={status} onChange={(e) => { setStatus(e.target.value) }} />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button style={styles.button} onClick={handleEnter}>Sumbit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style={styles.linkContainer}>
+        <Link to="/LeaveList" style={styles.link}>List</Link>
+        <span style={styles.linkSeparator}>   </span>
+        <Link to="/ApprovalList" style={styles.link}>Approvals</Link>
+      </div>
+    </div>
+  );
 }
-export default Approval;
+
+const styles = {
+  container: {
+    padding: "20px",
+  },
+  heading: {
+    fontSize: "1.5em",
+    marginBottom: "20px",
+  },
+  table: {
+    width: "100%",
+  },
+  label: {
+    display: "block",
+    fontWeight: "bold",
+    marginBottom: "5px",
+  },
+  input: {
+    width: "50%",
+    padding: "10px",
+    boxSizing: "border-box",
+  },
+  select: {
+    width: "100%",
+    padding: "10px",
+    boxSizing: "border-box",
+  },
+  button: {
+    backgroundColor: "green",
+    color: "#fff",
+    padding: "10px 15px",
+    border: "none",
+    cursor: "pointer",
+    marginRight: "10px",
+    textDecoration: "none",
+  },
+  linkContainer: {
+    marginTop: "20px",
+  },
+  link: {
+    textDecoration: "none",
+    color: "#007bff",
+    cursor: "pointer",
+  },
+  linkSeparator: {
+    margin: "0 5px",
+  },
+};
+
+export default LeaveRequest;

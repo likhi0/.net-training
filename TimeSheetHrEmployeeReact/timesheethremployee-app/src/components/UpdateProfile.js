@@ -1,61 +1,128 @@
 import { useState } from "react";
-import './AddProfile.css';
 
-function UpdateProfile(){
-    const[profileId,setProfileId]= useState("");
-    const [username,setUsername] = useState("");
-    const [firstName,setFirstName] = useState("");
-    const [lastName,setLastName] = useState("");
-    const [contactNumber,setContactNumber] = useState("");
-    const [jobTitle,setJobTitle] = useState("");
-    var profile;
-    var clickAdd = ()=>{
-        alert('You clicked the button');
-       profile={
-        "profileId":profileId,
-        "username":username,
-        "firstName":firstName,
-        "lastName":lastName,
-        "contactNumber":contactNumber,
-        "jobTitle":jobTitle
-        }
-        console.log(profile);
-        fetch('http://localhost:5191/api/Profile', {
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(profile)
+function UpdateProfile() {
+  const profileId = localStorage.getItem('profileId');
+  const username = localStorage.getItem('username');
+  const [firstName, setFirstName] = useState(localStorage.getItem('firstName'));
+  const [lastName, setLastName] = useState(localStorage.getItem('lastName'));
+  const [contactNumber, setContactNumber] = useState(localStorage.getItem('contactNumber'));
+  const [jobTitle, setJobTitle] = useState(localStorage.getItem('jobTitle'));
+
+  const clickAdd = () => {
+    alert('You clicked the button');
+    const profile = {
+      "profileId": profileId,
+      "username": username,
+      "firstName": firstName,
+      "lastName": lastName,
+      "contactNumber": contactNumber,
+      "jobTitle": jobTitle
+    };
+    console.log(profile);
+
+    fetch('http://localhost:5191/api/Profile', {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(profile)
     })
-    .then(response => response.json())
-    .then(data => {
+      .then(response => response.json())
+      .then(data => {
         console.log('Server response:', data);
         alert('Update Added');
-    })
-    .catch(error => {
+      })
+      .catch(error => {
         console.error('Error:', error);
         alert('Error updating profile');
-    });
+      });
+  };
 
-    }
-    return(
-        <div className="inputcontainer">
-            <label className="form-control" for="pusername">Id</label>
-            <input id="pusername" type="text" className="form-control" value={profileId} onChange={(e)=>{setProfileId(e.target.value)}}/>
-            <label className="form-control" for="pusername">UserName</label>
-            <input id="pusername" type="text" className="form-control" value={username} onChange={(e)=>{setUsername(e.target.value)}}/>
-            <label className="form-control"  for="pfirstname">FirstName</label>
-            <input id="pfirstname" type="text" className="form-control" value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}/>
-            <label className="form-control"  for="plastname">LastName</label>
-            <input id="plastname" type="text" className="form-control" value={lastName} onChange={(e)=>{setLastName(e.target.value)}}/>
-            <label className="form-control" for="pcontact">ContactNumber</label>
-            <input id="pcontact" type="number" className="form-control" value={contactNumber} onChange={(e)=>{setContactNumber(e.target.value)}}/>
-            <label className="form-control"  for="ptitle">JobTitle</label>
-            <input id="ptitle" type="text" className="form-control" value={jobTitle} onChange={(e)=>{setJobTitle(e.target.value)}}/>
-            <button onClick={clickAdd} className="btn btn-primary">UpdateProfiles</button>
-        </div>
-    );
+  return (
+    <div className="inputcontainer" style={styles.inputContainer}>
+      <div className="form-row" style={styles.formRow}>
+        <label htmlFor="profileId" className="form-control-label" style={styles.label}>Id</label>
+        <input id="profileId" type="text" className="form-control" value={profileId} readOnly />
+      </div>
 
+      <div className="form-row" style={styles.formRow}>
+        <label htmlFor="username" className="form-control-label" style={styles.label}>UserName</label>
+        <input id="username" type="text" className="form-control" value={username} readOnly />
+      </div>
+
+      <div className="form-row" style={styles.formRow}>
+        <label htmlFor="firstName" className="form-control-label" style={styles.label}>FirstName</label>
+        <input id="firstName" type="text" className="form-control" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+      </div>
+
+      <div className="form-row" style={styles.formRow}>
+        <label htmlFor="lastName" className="form-control-label" style={styles.label}>LastName</label>
+        <input id="lastName" type="text" className="form-control" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+      </div>
+
+      <div className="form-row" style={styles.formRow}>
+        <label htmlFor="contactNumber" className="form-control-label" style={styles.label}>Contact Number:</label>
+        <input id="contactNumber" type="number" className="form-control" value={contactNumber} onChange={(e) => setContactNumber(e.target.value)} />
+      </div>
+
+      <div className="form-row" style={styles.formRow}>
+        <label htmlFor="jobTitle" className="form-control-label" style={styles.label}>JobTitle</label>
+        <input id="jobTitle" type="text" className="form-control" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} />
+      </div>
+
+      <button onClick={clickAdd} className="btn btn-primary" style={styles.button}>Update Profile</button>
+      <div className="col-sm-3 text-center"> 
+      <a
+        href="/UserProfile"
+        className="text-decoration-black mb-3 text-info fw-bold"
+        style={{ fontSize: '14px', color: 'black' }} 
+      > 
+         Back
+      </a>
+    </div>
+    </div>
+  );
 }
+
+const styles = {
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    border:'3px solid black'
+  },
+  formRow: {
+    marginBottom: '15px',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  label: {
+    marginRight: '20px',
+    width: '80px',
+    textAlign: 'left',
+  },
+  button: {
+    marginTop: '20px',
+  },
+  profileContainer: {
+    marginTop: '20px',
+  },
+  formcontrol: {
+    marginbottom: '10px',
+    width: '100%',
+  },
+  circularIcon: {
+    position: 'absolute',
+    top: '50%',
+    right: '-10px', // Adjust the distance from the right side
+    transform: 'translateY(-50%)',
+    width: '20px',
+    height: '20px',
+    borderRadius: '50%',
+    backgroundColor: 'red',
+    // Add your circular icon styles here
+  },
+};
+
 export default UpdateProfile;

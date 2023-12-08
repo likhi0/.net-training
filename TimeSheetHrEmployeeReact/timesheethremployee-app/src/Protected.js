@@ -4,7 +4,7 @@ function Protected({children}){
 
     var token = localStorage.getItem("token");
     if(!token){
-        return <Navigate to="/Register"/>
+        return <Navigate to="/"/>
     }
     return children;
 }

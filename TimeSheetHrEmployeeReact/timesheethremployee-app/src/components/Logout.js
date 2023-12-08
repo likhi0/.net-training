@@ -7,6 +7,12 @@ function Logout() {
     localStorage.removeItem("username");
     localStorage.removeItem('role');
     localStorage.removeItem('token');
+    localStorage.removeItem('profileId');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('contactNumber');
+    localStorage.removeItem('jobTitle');
+    localStorage.removeItem('timesheetID');
     
   }
 

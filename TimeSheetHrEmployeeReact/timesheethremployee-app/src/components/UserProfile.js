@@ -1,61 +1,113 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './UserProfile.css';
+import { useNavigate } from "react-router-dom";
+
 function UserProfile() {
   const [userData, setUserData] = useState(null);
-  const UserName = localStorage.getItem("username");
+  const userName = localStorage.getItem("username");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        //const UserName = localStorage.getItem("username");
-
-
-        if (UserName) {
+        if (userName) {
           const response = await axios.get("http://localhost:5191/api/Profile", {
             params: {
-              UserName: UserName,
+              UserName: userName,
             },
           });
 
           const user = response.data;
+          localStorage.setItem('profileId', user.profileId);
+          localStorage.setItem('firstName', user.firstName);
+          localStorage.setItem('lastName', user.lastName);
+          localStorage.setItem('contactNumber', user.contactNumber);
+          localStorage.setItem('jobTitle', user.jobTitle);
+
           setUserData(user);
         } else {
           console.error("No authentication token found.");
+          navigate("/AddProfiles");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
+        navigate("/AddProfiles");
       }
     };
 
     fetchUserData();
-  }, []);
+  }, [userName, navigate]);
+
+  const styles = {
+    userProfile: {
+      textAlign: 'center',
+      maxWidth: '500px',
+      margin: 'auto',
+      marginTop: "75px",
+    marginBottom: "20px",
+    },
+    heading: {
+      fontSize: '24px',
+      fontWeight: 'bold',
+      color: '#28a745', 
+      margin: '20px 3',
+    },
+    profileDetails: {
+      padding: '20px',
+      border: '1px solid #28a745',
+      borderRadius: '5px',
+      marginBottom: '20px',
+    },
+    profileDetailsItem: {
+      marginBottom: '10px',
+    },
+    buttonContainer: {
+      display: 'flex',
+      justifyContent: 'center',
+      
+    },
+    button: {
+      margin: '0 10px',
+      padding: '10px 20px',
+      fontSize: '10px',
+      backgroundColor: 'blue'
+    },
+    updateButton: {
+      backgroundColor: 'Teal', 
+    },
+    deleteButton: {
+      backgroundColor: 'red', 
+    },
+  };
 
   return (
-    <div className="userProfile">
-      <h1 className="alert alert-success">Profile</h1>
+    <div style={styles.userProfile}>
+      <h1 style={styles.heading}>User Profile</h1>
 
       {userData ? (
-        <div className="alert alert-primary">
-          <p>Email: {UserName}</p>
-          <p>Profile Id: {userData.profileId}</p>
-          <p>First Name: {userData.firstName}</p>
-          <p>Last Name: {userData.lastName}</p>
-          <p>Contact Number: {userData.contactNumber}</p>
-          <p>Job Title: {userData.jobTitle}</p>
-          {/* Include other user data fields as needed */}
+        <div style={styles.profileDetails} className="profile-details">
+          <p style={styles.profileDetailsItem}>Email: {userName}</p>
+          <p style={styles.profileDetailsItem}>Profile ID: {userData.profileId}</p>
+          <p style={styles.profileDetailsItem}>First Name: {userData.firstName}</p>
+          <p style={styles.profileDetailsItem}>Last Name: {userData.lastName}</p>
+          <p style={styles.profileDetailsItem}>Contact Number: {userData.contactNumber}</p>
+          <p style={styles.profileDetailsItem}>Job Title: {userData.jobTitle}</p>
         </div>
       ) : (
         <div className="alert alert-warning">
           Error loading user data.
         </div>
       )}
-      <button className="btn btn-danger button">
-            <a class="nav-link" aria-current="page" href="/UpdateProfile">Update</a>            
-            </button>
-            <button className="btn btn-danger button">
-            <a class="nav-link" aria-current="page" href="/DeleteProfiles">Delete</a>            
-            </button>
+
+      <div style={styles.buttonContainer} className="button-container">
+      <button style={{ ...styles.button, ...styles.updateButton }} className="btn btn-danger button">
+        <a style={{ color: 'white', textDecoration: 'none' }} href="/UpdateProfile">Edit</a>
+      </button>
+      <button style={{ ...styles.button, ...styles.deleteButton }} className="btn btn-danger button">
+        <a style={{ color: 'white', textDecoration: 'none' }} href="/DeleteProfiles">Delete </a>
+      </button>
+
+      </div>
     </div>
   );
 }

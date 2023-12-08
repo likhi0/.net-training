@@ -1,38 +1,51 @@
 import { useState } from "react";
 import './AddProfile.css';
+import { useNavigate } from "react-router-dom";
 
-//import axios from "axios";
+function Tasks() {
+    const [taskDescription, setTaskDescription] = useState("");
+    const role = localStorage.getItem("role");
+    const navigate = useNavigate();
 
-function Tasks(){
-    const [taskDescription,setTaskDescription] = useState("")
-    var tasks;
-    var clickAdd = ()=>{
-        alert('You clicked the button');
-       tasks={
-        "taskDescription":taskDescription,
-        
-        }
-        console.log(tasks);
-        fetch('http://localhost:5191/api/Tasks',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify(tasks)
-        }).then(
-            ()=>{
-                alert("Task Added");
-            }
-        ).catch((e)=>{
-            console.log(e)
-        })
+    if (role !== "HR") {
+        alert("You don't have access to this page");
+        setTimeout(() => {
+            navigate("/Home");
+        }, 0);
+        return null;
     }
-    return(
+
+    var tasks;
+    var clickAdd = () => {
+        alert('You clicked the button');
+        tasks = {
+            "taskDescription": taskDescription,
+        };
+        console.log(tasks);
+        fetch('http://localhost:5191/api/Tasks', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem("token"),
+            },
+            body: JSON.stringify(tasks),
+        })
+            .then(() => {
+                alert("Task Added");
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
+    return (
         <div className="inputcontainer">
-            <label className="form-control" for="ttaskDescription">TaskDescription</label>
-            <input id="ttaskDescription" type="text" className="form-control" value={taskDescription} onChange={(e)=>{setTaskDescription(e.target.value)}}/>
+            <label className="form-control" htmlFor="ttaskDescription">Task Description</label>
+            <input id="ttaskDescription" type="text" className="form-control" value={taskDescription} onChange={(e) => { setTaskDescription(e.target.value) }} />
+            <button className="btn btn-primary button" onClick={clickAdd}>Enter</button>
         </div>
     );
 }
+
 export default Tasks;

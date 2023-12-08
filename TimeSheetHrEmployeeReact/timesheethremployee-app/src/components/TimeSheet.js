@@ -8,7 +8,6 @@ function TimeSheet() {
   const [hoursWorked, setHoursWorked] = useState("");
   const [overtime, setOverTime] = useState("");
   const [comments, setComments] = useState("");
-  var [usernameError, setUsernameError] = useState("");
   
   var checkUSerData = () => {
     // ... (unchanged validation logic)
@@ -37,6 +36,7 @@ function TimeSheet() {
   }
 
   return (
+    <div classNmae="back">
     <form className="registerForm" style={styles.form}>
       <div style={styles.inputGroup}>
         <label style={styles.label}>Username</label>
@@ -88,13 +88,19 @@ function TimeSheet() {
       </div>
 
       <div style={styles.buttonGroup}>
-        <button className="btn btn-primary button" onClick={Enter}>Enter</button>
-        <button className="btn btn-danger button">Cancel</button>
+        <button className="btn btn-primary button" onClick={Enter}>Submit</button>
         <button className="btn btn-danger button">
           <a className="nav-link" aria-current="page" href="/TimeSheetList">List</a>
         </button>
+        <button className="btn btn-danger button">
+          <a className="nav-link" aria-current="page" href="/TaskList">Tasks</a>
+        </button>
       </div>
     </form>
+     <div className="col-md-6 mt-5">
+     <img src="Images/purple.jpg" style={{ width: "100%", height:"100%" }} alt="Timesheet" />
+   </div>
+   </div>
   );
 }
 

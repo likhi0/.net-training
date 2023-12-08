@@ -27,7 +27,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
         /// <param name="approval"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles="Hr")]
+        [Authorize(Roles="HR")]
         
         public IActionResult AddApproval(Approval approval)
         {

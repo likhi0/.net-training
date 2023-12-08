@@ -1,67 +1,108 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function TimeSheetList() {
-  const [timesheetid,setTimeSheetId] = useState("");
+function Approval() {
+  const timesheetID = localStorage.getItem('timesheetID');
   const [approvalList, setApprovalList] = useState([]);
-  var getApproval = (event)=>{
-    event.preventDefault();
-    console.log(timesheetid);
-    axios.get("http://localhost:5191/api/Approval",{
-      params: {
-        timesheetid: timesheetid,
-      },
-        
-       
-    })
-    .then((response)=>{
-      const posts=response.data;
-      //console.log(posts);
-      setApprovalList(posts);
-      //console.log(leaveRequestsList);
+  const [loading, setLoading] = useState(false);
 
-  
+  useEffect(() => {
+    axios
+      .get("http://localhost:5191/api/Approval", {
+        params: {
+          timesheetid: timesheetID,
+        },
+      })
+    .then((response) => {
+      const approvals = response.data;
+      setApprovalList(approvals);
     })
-    .catch((err)=>{
-      console.log(err)
-    })  
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+    });
+  },[timesheetID]);
 
-  }
-  var checkapproval = approvalList.length>0?true:false;
-  return(
-    <div className="registerForm">
-    <h1 className="alert alert-success">Approvals</h1>
-    
-    <form>      
-      <br/>   
-      <div class="row"> 
-        <label className="form-control highlight-label">TimeSheetId</label>
-        <input id="pusername" type="text" class="form-control" value={timesheetid} placeholder="Enter the Email"
-         onChange={(e)=>{setTimeSheetId(e.target.value)}}/>
+  const hasApprovals = approvalList.length > 0;
+
+  return (
+    <div style={styles.registerForm}>
+      <h1 style={styles.alertSuccess}>Approvals</h1>
+      <br />
+      <div style={styles.timesheetContainer}>
+        <span style={styles.timesheetLabel}>TimeSheetId:</span>
+        <span style={styles.highlightedTimesheet}>{timesheetID}</span>
       </div>
-      <div class="row">
-          <button className="btn btn-success" onClick={getApproval}>Get All Appprovals</button>
-      </div>
-      </form>
-      {checkapproval? 
-            <div >
-                {approvalList.map((approval)=>
-                    <div key={approval.id} className="alert alert-primary">
-                        approval Approvedby:{approval.approvedby}
-                        <br/>
-                        approval aprrovedDate: {approval.aprrovedDate}
-                        <br/>
-                        approval status : {approval.status}
-                        <br/>
-                        approval comment: {approval.comment}
-                </div>)}
-            </div>
-            :
-            <div>No Approvals available yet</div>
-            }
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        hasApprovals ? (
+          <table style={styles.table}>
+            <thead>
+              <tr>
+                <th>Approved by</th>
+                <th>Approved Date</th>
+                <th>Status</th>
+                <th>Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              {approvalList.map((approval) => (
+                <tr key={approval.id}>
+                  <td>{approval.approvedby}</td>
+                  <td>{approval.aprrovedDate}</td>
+                  <td>{approval.status}</td>
+                  <td>{approval.comment}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div>No Approvals available yet</div>
+        )
+      )}
     </div>
-
-  
   );
 }
-export default TimeSheetList;
+
+const styles = {
+  registerForm: {
+    maxWidth: "800px",
+    margin: "0 auto",
+    padding: "20px",
+  },
+  alertSuccess: {
+    backgroundColor: "",
+    color: "#28a745",
+    padding: "10px",
+    marginTop: "50px",
+    marginBottom: "20px",
+    textAlign: "center",
+    maxWidth: "500px",
+    border: "3px solid black",
+  },
+  timesheetContainer: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "15px",
+  },
+  timesheetLabel: {
+    marginRight: "10px",
+    fontWeight: "bold",
+  },
+  highlightedTimesheet: {
+    fontSize: "1.2em",
+    backgroundColor: "#28a745",
+    color: "#fff",
+    padding: "5px 10px",
+    borderRadius: "5px",
+  },
+  table: {
+    width: "100%",
+    borderCollapse: "collapse",
+    marginTop: "10px",
+  },
+};
+
+export default Approval;

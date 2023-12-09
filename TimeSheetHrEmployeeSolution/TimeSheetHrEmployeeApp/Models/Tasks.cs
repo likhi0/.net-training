@@ -8,7 +8,7 @@ namespace TimeSheetHrEmployeeApp.Models
         [Key]
         public int TaskID { get; set; }
        
-        public string TaskDescription { get; set; }
+        public string TaskDescription { get; set; } = string.Empty;
 
 
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TimeSheetHrEmployeeApp.Context;
+using TimeSheetHrEmployeeApp.Exceptions;
 using TimeSheetHrEmployeeApp.Interface;
 using TimeSheetHrEmployeeApp.Models;
 using TimeSheetHrEmployeeApp.Repositories;
@@ -44,7 +45,17 @@ namespace TimeSheetHrEmployeeTesting
             // Assert
             Assert.IsTrue(result);
         }
-        
+        [Test]
+        public void GetAllTimeSheetsTest()
+        {
+            // Arrange
+            ITimeSheetService timeSheetService = new TimeSheetService(repository);
+            string username = "testuser";
+
+            // Act and Assert
+            Assert.Throws<NoTimeSheetAvaliableException>(() => timeSheetService.GetAllTimeSheets(username));
+        }
+
 
 
 

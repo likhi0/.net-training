@@ -28,7 +28,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            catch (DbUpdateException exp)
+            catch (DbUpdateException )
             {
                 ViewBag.Message = "User name already exits";
             }

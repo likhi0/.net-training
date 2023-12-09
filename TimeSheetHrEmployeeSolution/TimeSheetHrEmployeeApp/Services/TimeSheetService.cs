@@ -1,4 +1,5 @@
-﻿using TimeSheetHrEmployeeApp.Interface;
+﻿using TimeSheetHrEmployeeApp.Exceptions;
+using TimeSheetHrEmployeeApp.Interface;
 using TimeSheetHrEmployeeApp.Models;
 using TimeSheetHrEmployeeApp.Repositories;
 
@@ -42,15 +43,19 @@ namespace TimeSheetHrEmployeeApp.Services
         /// <param name="username"></param>
         /// <returns></returns>
 
-        public IList<TimeSheet> GetAllTimeSheets(string username)
+        public TimeSheet GetAllTimeSheets(string username)
         {
-            var user = _TimesheetRepository.GetAll().Where(u => u.Username == username).ToList();
+            var user = _TimesheetRepository.GetAll().FirstOrDefault(u => u.Username == username);
+
             if (user != null)
             {
                 return user;
             }
-            return null;
+
+            throw new NoTimeSheetAvaliableException();
         }
+
+
         /// <summary>
         /// updating the timeshhet
         /// </summary>
@@ -73,9 +78,9 @@ namespace TimeSheetHrEmployeeApp.Services
                     var result = _TimesheetRepository.Update(timeSheet);
                     return result;
                 }
-            
 
-            return null;
+
+            throw new NoTimeSheetAvaliableException();
         }
     }
 }

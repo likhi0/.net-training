@@ -28,16 +28,16 @@ namespace TimeSheetHrEmployeeApp.Repositories
                 _context.TimeSheets.Remove(timeSheet);
                 _context.SaveChanges();
             }
+#pragma warning disable CS8603 // Possible null reference return.
             return timeSheet;
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public IList<TimeSheet> GetAll()
         {
-            if (_context.TimeSheets.Count() == 0)
-                return null;
-
             return _context.TimeSheets.ToList();
         }
+
 
         public TimeSheet GetById(int key)
         {

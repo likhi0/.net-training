@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Build.Framework;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TimeSheetHrEmployeeApp.Context;
+using TimeSheetHrEmployeeApp.Exceptions;
 using TimeSheetHrEmployeeApp.Interface;
 using TimeSheetHrEmployeeApp.Models;
 using TimeSheetHrEmployeeApp.Models.DTO;
@@ -41,6 +43,14 @@ namespace TimeSheetHrEmployeeTesting
 
             // Assert
             Assert.IsTrue(result);
+        }
+        [Test]
+        public void GetAllLeavesTest()
+        {
+            ILeaveRequestService leaverequesttService = new LeaveRequestService(repository);
+            string username = "testuser";
+
+            Assert.Throws<NoLeaveRequestAvailableException>(() => leaverequesttService.GetAllLeaves(username));
         }
 
     }

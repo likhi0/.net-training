@@ -70,9 +70,9 @@ namespace TimeSheetHrEmployeeApp.Services
 
                 return profileDTO;
             }
-          
 
-            return null;
+
+            throw new NoProfileFoundException();
         }
         /// <summary>
         /// deleting the profile
@@ -102,7 +102,7 @@ namespace TimeSheetHrEmployeeApp.Services
             {
                 return user;
             }
-            return null;
+            throw new NoProfileFoundException();
         }
     }
 }

@@ -6,10 +6,10 @@ namespace TimeSheetHrEmployeeApp.Models
     {
         public int ApprovalID { get; set; }
        // public int TimesheetID { get; set; }
-        public string Approvedby { get; set; }
+        public string Approvedby { get; set; } = string.Empty;
         public DateTime AprrovedDate { get; set; }
-        public string Status  { get; set; }
-        public string Comment { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public string Comment { get; set; } = string.Empty; 
         public int TimesheetID { get; set; }
         [ForeignKey("TimesheetID")]
         public TimeSheet? Timesheet { get; set; }

@@ -3608,3 +3608,132 @@ FROM [Profiles] AS [p]
 SELECT [p].[ProfileId], [p].[ContactNumber], [p].[FirstName], [p].[JobTitle], [p].[LastName], [p].[Picture], [p].[Username]
 FROM [Profiles] AS [p]
 2023-12-08 18:10:50,122 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ProfileController.GetUserProfile[92] - Get user profile
+2023-12-09 10:53:45,360 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-12-09 10:53:45,656 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-12-09 10:53:45,669 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-12-09 10:53:45,677 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-12-09 10:58:09,686 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 10:58:15,452 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (168ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [TimeSheets] AS [t]
+2023-12-09 10:58:15,740 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (28ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[TimesheetID], [t].[Comments], [t].[HoursWorked], [t].[OverTime], [t].[Period], [t].[Username]
+FROM [TimeSheets] AS [t]
+2023-12-09 10:58:15,972 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.TimeSheetController.GetAllTimeSheets[70] - Get all time sheets from user
+2023-12-09 16:45:24,525 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-12-09 16:45:25,071 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-12-09 16:45:25,099 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-12-09 16:45:25,114 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-12-09 16:47:01,172 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 16:47:05,243 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (425ms) [Parameters=[@__key_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [u].[Username], [u].[Key], [u].[Password], [u].[Role]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__key_0
+2023-12-09 16:47:06,217 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.UserController.Login[64] - user login
+2023-12-09 17:00:51,637 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 17:00:53,680 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (148ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Double), @p2='?' (DbType = Double), @p3='?' (Size = 4000), @p4='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TimeSheets] ([Comments], [HoursWorked], [OverTime], [Period], [Username])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [TimesheetID]
+FROM [TimeSheets]
+WHERE @@ROWCOUNT = 1 AND [TimesheetID] = scope_identity();
+2023-12-09 17:33:21,058 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 17:33:23,073 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (184ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Double), @p2='?' (DbType = Double), @p3='?' (Size = 4000), @p4='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TimeSheets] ([Comments], [HoursWorked], [OverTime], [Period], [Username])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [TimesheetID]
+FROM [TimeSheets]
+WHERE @@ROWCOUNT = 1 AND [TimesheetID] = scope_identity();
+2023-12-09 17:34:20,068 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 17:34:20,147 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (17ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Double), @p2='?' (DbType = Double), @p3='?' (Size = 4000), @p4='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TimeSheets] ([Comments], [HoursWorked], [OverTime], [Period], [Username])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [TimesheetID]
+FROM [TimeSheets]
+WHERE @@ROWCOUNT = 1 AND [TimesheetID] = scope_identity();
+2023-12-09 17:46:54,497 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 17:46:54,952 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (39ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Double), @p2='?' (DbType = Double), @p3='?' (Size = 4000), @p4='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TimeSheets] ([Comments], [HoursWorked], [OverTime], [Period], [Username])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [TimesheetID]
+FROM [TimeSheets]
+WHERE @@ROWCOUNT = 1 AND [TimesheetID] = scope_identity();
+2023-12-09 17:50:04,647 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 17:50:05,219 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (449ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Double), @p2='?' (DbType = Double), @p3='?' (Size = 4000), @p4='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TimeSheets] ([Comments], [HoursWorked], [OverTime], [Period], [Username])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [TimesheetID]
+FROM [TimeSheets]
+WHERE @@ROWCOUNT = 1 AND [TimesheetID] = scope_identity();
+2023-12-09 18:13:31,160 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:13:35,289 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (608ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (DbType = Double), @p2='?' (DbType = Double), @p3='?' (Size = 4000), @p4='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [TimeSheets] ([Comments], [HoursWorked], [OverTime], [Period], [Username])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [TimesheetID]
+FROM [TimeSheets]
+WHERE @@ROWCOUNT = 1 AND [TimesheetID] = scope_identity();
+2023-12-09 18:50:20,169 [1] INFO Microsoft.Hosting.Lifetime.?[?] - Now listening on: http://localhost:5191
+2023-12-09 18:50:20,369 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Application started. Press Ctrl+C to shut down.
+2023-12-09 18:50:20,381 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Hosting environment: Development
+2023-12-09 18:50:20,387 [1] INFO Microsoft.Hosting.Lifetime.OnApplicationStarted[0] - Content root path: E:\training\Project\TimeSheetHrEmployeeSolution\TimeSheetHrEmployeeApp\
+2023-12-09 18:51:43,887 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:51:45,988 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (131ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [l].[LeaveRequestID], [l].[EndDate], [l].[StartDate], [l].[Status], [l].[Username]
+FROM [LeaveRequests] AS [l]
+2023-12-09 18:51:46,311 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.LeaveRequestController.GetAllLeaves[50] - Get all leaves
+2023-12-09 18:52:00,878 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:52:01,285 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Approvals] AS [a]
+2023-12-09 18:52:01,313 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a].[ApprovalID], [a].[Approvedby], [a].[AprrovedDate], [a].[Comment], [a].[Status], [a].[TimesheetID]
+FROM [Approvals] AS [a]
+2023-12-09 18:52:01,353 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ApprovalController.Get[53] - Get all approvals
+2023-12-09 18:52:13,760 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:52:13,778 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Approvals] AS [a]
+2023-12-09 18:52:13,791 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a].[ApprovalID], [a].[Approvedby], [a].[AprrovedDate], [a].[Comment], [a].[Status], [a].[TimesheetID]
+FROM [Approvals] AS [a]
+2023-12-09 18:52:13,804 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ApprovalController.Get[53] - Get all approvals
+2023-12-09 18:52:43,329 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:52:43,392 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[TimesheetID], [t].[Comments], [t].[HoursWorked], [t].[OverTime], [t].[Period], [t].[Username]
+FROM [TimeSheets] AS [t]
+2023-12-09 18:52:43,457 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.TimeSheetController.GetAllTimeSheets[70] - Get all time sheets from user
+2023-12-09 18:53:01,203 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:53:01,237 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Approvals] AS [a]
+2023-12-09 18:53:01,248 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a].[ApprovalID], [a].[Approvedby], [a].[AprrovedDate], [a].[Comment], [a].[Status], [a].[TimesheetID]
+FROM [Approvals] AS [a]
+2023-12-09 18:53:01,259 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ApprovalController.Get[53] - Get all approvals
+2023-12-09 18:53:12,743 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:53:12,790 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Approvals] AS [a]
+2023-12-09 18:53:12,819 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a].[ApprovalID], [a].[Approvedby], [a].[AprrovedDate], [a].[Comment], [a].[Status], [a].[TimesheetID]
+FROM [Approvals] AS [a]
+2023-12-09 18:53:12,832 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ApprovalController.Get[53] - Get all approvals
+2023-12-09 18:53:14,477 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:53:14,496 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Approvals] AS [a]
+2023-12-09 18:53:14,512 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [a].[ApprovalID], [a].[Approvedby], [a].[AprrovedDate], [a].[Comment], [a].[Status], [a].[TimesheetID]
+FROM [Approvals] AS [a]
+2023-12-09 18:53:14,524 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.ApprovalController.Get[53] - Get all approvals
+2023-12-09 18:53:34,271 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Infrastructure.?[?] - Entity Framework Core 6.0.24 initialized 'TimeSheetHrEmployeeContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.24' with options: None
+2023-12-09 18:53:34,313 [.NET ThreadPool Worker] INFO Microsoft.EntityFrameworkCore.Database.Command.?[?] - Executed DbCommand (24ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [t].[TaskID], [t].[TaskDescription]
+FROM [Tasks] AS [t]
+2023-12-09 18:53:34,340 [.NET ThreadPool Worker] INFO TimeSheetHrEmployeeApp.Controllers.TasksController.Get[36] - all tasks

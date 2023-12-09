@@ -24,7 +24,7 @@ namespace TimeSheetHrEmployeeApp.Services
                 var result = _tasksRepository.Add(task);
                 return result;
             }
-            return null;
+            throw new NoTaskAvaliableException();
         }
         /// <summary>
         /// list of tasks

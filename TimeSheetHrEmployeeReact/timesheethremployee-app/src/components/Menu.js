@@ -7,7 +7,7 @@ function Menu()
     return(
         <div>
 
-<nav data-aos="slide-down" data-aos-duration="1000" className="navbar navbar-expand-md navbar-light fixed-top bg-white px-sm-5 shadow py-3">
+<nav data-aos="slide-down" data-aos-duration="1000" className="navbar navbar-expand-md navbar-light fixed-top bg-lightpurple px-sm-5 shadow py-3">
             <div className="container-fluid">
               <a className="navbar-brand brand fw-bold" style={{color: '#6600cc'}} href="/home"> TimeSheetHREmployee</a>
           

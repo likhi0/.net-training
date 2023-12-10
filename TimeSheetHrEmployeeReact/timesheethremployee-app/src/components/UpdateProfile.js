@@ -81,6 +81,9 @@ function UpdateProfile() {
          Back
       </a>
     </div>
+    <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
+      </div>
     </div>
   );
 }

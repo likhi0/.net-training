@@ -27,7 +27,7 @@ function LeaveRequests() {
 
   return (
     <div className="leave-list" style={styles.leaveList}>
-      <h1 style={styles.alertSuccess}>Leave</h1>
+      <h1 style={styles.alertSuccess}>Leaves</h1>
 
       <div style={styles.usernameContainer}>
         <span style={styles.usernameLabel}>Username:</span>
@@ -62,6 +62,18 @@ function LeaveRequests() {
           )}
         </div>
       )}
+      <div className="col-sm-15 " > 
+      <a
+        href="/LeaveRequest"
+        className="text-decoration-black mb-3 text-info fw-bold"
+        style={{ fontSize: '14px', color: 'black' }} 
+      > 
+        Back
+      </a>
+    </div>
+    <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
+      </div>
     </div>
   );
 }
@@ -87,8 +99,8 @@ const styles = {
   },
   highlightedUsername: {
     fontSize: "1.2em",
-    backgroundColor: "#28a745",
-    color: "#fff",
+    backgroundColor: "",
+    color: " ",
     padding: "5px 10px",
     borderRadius: "5px",
   },
@@ -104,13 +116,14 @@ const styles = {
     marginTop: "10px",
   },
   alertSuccess: {
-    backgroundColor: "#28a745",
+    backgroundColor: "",
     color: "#fff",
     padding: "10px",
     marginTop: "70px",
     marginBottom: "20px",
     textAlign: "center",
     maxWidth: "500px",
+    border: "3px solid black",
   },
 };
 

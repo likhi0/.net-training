@@ -37,7 +37,7 @@ const ProfileDeleteComponent = () => {
       <p style={{ marginTop: '10px' }}>{message}</p>
         <div className="row mt-9">
         <div className="col-sm-3"></div>
-        <div className="col-sm-3 text-center"> {/* Add 'text-center' class to center the content */}
+        <div className="col-sm-3 text-center">
       <a
         href="/Home"
         className="text-decoration-black mb-3 text-info fw-bold"
@@ -47,6 +47,9 @@ const ProfileDeleteComponent = () => {
       </a>
     </div>
   </div>
+  <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
+      </div>
 
   </div>
     

@@ -22,13 +22,16 @@ function Logout() {
     style={{ backgroundColor: '#f0f0f0', padding: '200px' }}
    
     >
-      <h1 style={{fontSize:'100px',color:'Blue',marginTop:'10px', align: 'center'}}>Thank You!</h1>
+      <h1 style={{fontSize:'100px',color:'Black',marginTop:'10px', align: 'center'}}>Thank You!</h1>
       <br></br>
       <a href="/Home" onClick={handleLogout} className="Logout">
       
       <strong>Logout</strong>
        
       </a>
+      <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
+      </div>
     </div>
   );
 }

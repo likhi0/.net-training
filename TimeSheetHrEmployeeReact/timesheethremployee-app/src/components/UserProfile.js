@@ -31,7 +31,7 @@ function UserProfile() {
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
-        navigate("/AddProfiles");
+       
       }
     };
 
@@ -54,7 +54,7 @@ function UserProfile() {
     },
     profileDetails: {
       padding: '20px',
-      border: '1px solid #28a745',
+      border: '1px solid black',
       borderRadius: '5px',
       marginBottom: '20px',
     },
@@ -78,6 +78,11 @@ function UserProfile() {
     deleteButton: {
       backgroundColor: 'red', 
     },
+    highlightLabel: {
+      fontWeight: 'bold', 
+      color: 'black', 
+      // Add more styles as needed
+    }
   };
 
   return (
@@ -86,13 +91,13 @@ function UserProfile() {
 
       {userData ? (
         <div style={styles.profileDetails} className="profile-details">
-          <p style={styles.profileDetailsItem}>Email: {userName}</p>
-          <p style={styles.profileDetailsItem}>Profile ID: {userData.profileId}</p>
-          <p style={styles.profileDetailsItem}>First Name: {userData.firstName}</p>
-          <p style={styles.profileDetailsItem}>Last Name: {userData.lastName}</p>
-          <p style={styles.profileDetailsItem}>Contact Number: {userData.contactNumber}</p>
-          <p style={styles.profileDetailsItem}>Job Title: {userData.jobTitle}</p>
-        </div>
+        <p style={styles.highlightLabel}>Email: {userName}</p>
+        <p style={styles.highlightLabel}>Profile ID: {userData.profileId}</p>
+        <p style={styles.highlightLabel}>First Name: {userData.firstName}</p>
+        <p style={styles.highlightLabel}>Last Name: {userData.lastName}</p>
+        <p style={styles.highlightLabel}>Contact Number: {userData.contactNumber}</p>
+        <p style={styles.highlightLabel}>Job Title: {userData.jobTitle}</p>
+      </div>
       ) : (
         <div className="alert alert-warning">
           Error loading user data.
@@ -107,6 +112,9 @@ function UserProfile() {
         <a style={{ color: 'white', textDecoration: 'none' }} href="/DeleteProfiles">Delete </a>
       </button>
 
+      </div>
+      <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
       </div>
     </div>
   );

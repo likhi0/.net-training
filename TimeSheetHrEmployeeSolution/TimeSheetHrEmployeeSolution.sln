@@ -5,7 +5,12 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheetHrEmployeeApp", "TimeSheetHrEmployeeApp\TimeSheetHrEmployeeApp.csproj", "{DB998D5F-01B5-4B82-BEB5-DA47A9C45CDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheetHrEmployeeTesting", "TimeSheetHrEmployeeTesting\TimeSheetHrEmployeeTesting.csproj", "{B4A1D29A-6F2F-4654-8122-BB3CF9BD30CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheetHrEmployeeTesting", "TimeSheetHrEmployeeTesting\TimeSheetHrEmployeeTesting.csproj", "{B4A1D29A-6F2F-4654-8122-BB3CF9BD30CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A15D741C-17F4-4EAE-AB3C-33C2948BCD02}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -62,6 +62,19 @@ function Approval() {
           <div>No Approvals available yet</div>
         )
       )}
+      <div className="col-sm-15 " > 
+      <a
+        href="/LeaveRequest"
+        className="text-decoration-black mb-3 text-info fw-bold"
+        style={{ fontSize: '14px', color: 'black' }} 
+      > 
+        Back
+      </a>
+    </div>
+      <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
+      </div>
+      
     </div>
   );
 }
@@ -93,8 +106,8 @@ const styles = {
   },
   highlightedTimesheet: {
     fontSize: "1.2em",
-    backgroundColor: "#28a745",
-    color: "#fff",
+    backgroundColor: "",
+    color: "",
     padding: "5px 10px",
     borderRadius: "5px",
   },

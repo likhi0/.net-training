@@ -45,12 +45,41 @@ namespace TimeSheetHrEmployeeTesting
             Assert.IsTrue(result);
         }
         [Test]
-        public void GetAllLeavesTest()
+        public void GetAllLeaves()
         {
-            ILeaveRequestService leaverequesttService = new LeaveRequestService(repository);
-            string username = "testuser";
+            ILeaveRequestService leaverequestService = new LeaveRequestService(repository);
+            var username = "hemanth@gmail.com";
 
-            Assert.Throws<NoLeaveRequestAvailableException>(() => leaverequesttService.GetAllLeaves(username));
+            // Add some leave requests for testing
+            var leaveRequest1 = new LeaveRequest
+            {
+                Username = username,
+                StartDate = DateTime.Now.AddDays(1),
+                EndDate = DateTime.Now.AddDays(2),
+                Status = "pending"
+            };
+
+            var leaveRequest2 = new LeaveRequest
+            {
+                Username = username,
+                StartDate = DateTime.Now.AddDays(3),
+                EndDate = DateTime.Now.AddDays(4),
+                Status = "approved"
+            };
+
+            leaverequestService.AddLeave(leaveRequest1);
+            leaverequestService.AddLeave(leaveRequest2);
+
+            // Act
+            var leaveRequests = leaverequestService.GetAllLeaves(username);
+
+            // Assert
+            Assert.IsNotNull(leaveRequests);
+            Assert.AreEqual(2, leaveRequests.Count);
+
+            // Use NUnit constraints for better readability
+            Assert.That(leaveRequests, Has.Exactly(1).Property(nameof(LeaveRequest.Status)).EqualTo("pending"));
+            Assert.That(leaveRequests, Has.Exactly(1).Property(nameof(LeaveRequest.Status)).EqualTo("approved"));
         }
 
     }

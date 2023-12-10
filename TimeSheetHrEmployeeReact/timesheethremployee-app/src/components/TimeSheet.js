@@ -4,6 +4,7 @@ import axios from "axios";
 const TimeSheet = () => {
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
   const rowHeadings = ["Hours Worked", "Overtime", "Comments"];
+  const periods =["Daily","Weekly"]
   const [formData, setFormData] = useState({
     period: "",
     hoursWorked: "",
@@ -22,24 +23,50 @@ const TimeSheet = () => {
     // Sum up hours worked and overtime for each day
     const totalHoursWorkedPerDay = {};
     const totalOvertimePerDay = {};
+    var totalsumhoursWorked;
+    var totalsumovertime;
+
   
     formData.dayData.forEach((data) => {
+      //console.log("123");
+      //console.log(data);
+      var hours_Worked = [];
+      var over_time =[];
       daysOfWeek.forEach((day) => {
+        //console.log("567");
+
+        //console.log(data[day]["Hours Worked"]);
+
+        hours_Worked.push(parseInt(data[day]["Hours Worked"]));
+        over_time.push(parseInt(data[day]["Overtime"]));
+
+
         totalHoursWorkedPerDay[day] = (totalHoursWorkedPerDay[day] || 0) + parseFloat(data[day]?.hoursWorked || 0);
         totalOvertimePerDay[day] = (totalOvertimePerDay[day] || 0) + parseFloat(data[day]?.overtime || 0);
+    
       });
+      console.log(eval(hours_Worked.join("+")));
+      totalsumhoursWorked=eval(hours_Worked.join("+"));
+
+      totalsumovertime=eval(over_time.join("+"));
+      //console.log(hours_Worked);
+      //console.log(over_time);
     });
+    
   
     axios
       .post("http://localhost:5191/api/TimeSheet", {
         username,
         period: formData.period,
-        totalHoursWorkedPerDay,
-        totalOvertimePerDay,
+        //hoursWorked:totalsumhoursWorked,
+        hoursWorked:formData.hoursWorked,
+        overtime:formData.overtime,
+        //overtime:totalsumovertime,
         comments: formData.comments,
       })
       .then((response) => {
         console.log(response.data);
+
         // Optionally, you can reset the form after successful submission
         setFormData({
           period: "",
@@ -183,22 +210,37 @@ const TimeSheet = () => {
             onChange={handleChange}
           >
             <option value="">Select Period</option>
-            <option value="Daily">Daily</option>
-            <option value="Weekly">Weekly</option>
+            {periods.map((p) => (
+              <option value={p} key={p}>
+                {p}
+              </option>
+            ))}
           </select>
+
         </div>
 
-        {formData.period === "Daily" ? renderDailyTable() : renderWeeklyTable()}
-
+        {formData.period === "Daily" && renderDailyTable()}
+        {formData.period === "Weekly" && renderWeeklyTable()}
         <div style={styles.buttonGroup}>
           <button className="btn btn-primary button" onClick={handleSubmit}>
             Submit
           </button>
-          {/* Other buttons go here */}
         </div>
-      </form>
-      {/* Other elements go here */}
+        <div className="col-sm-10 " > 
+      <a
+        href="/TimeSheetList"
+        className="text-decoration-black mb-3 text-info fw-bold"
+        style={{ fontSize: '14px', color: 'black' }} 
+      > 
+        List
+      </a>
     </div>
+      </form>
+      <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
+      </div>
+    </div>
+    
   );
 };
 
@@ -211,7 +253,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "mediumpurple",
+   
   },
   inputGroup: {
     marginBottom: '15px',
@@ -221,11 +263,11 @@ const styles = {
     marginBottom: '5px',
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 25,
     marginLeft: '-1350px'
   },
   input: {
-    marginLeft: '-1350px',
+    marginLeft: '-1300px',
     padding: '5px',
     border: '1px solid #ccc',
     borderRadius: '5px',
@@ -243,6 +285,8 @@ const styles = {
     width: "100%",
     marginTop: "20px",
     borderCollapse: "collapse",
+    borderRadius:"3px solid black",
+    bordercolor:"black"
   },
   buttonGroup: {
     display: "flex",
@@ -253,9 +297,10 @@ const styles = {
     width: '100%',
     marginTop: '20px',
     borderCollapse: 'collapse',
+    borderRadius:"3px solid black"
   },
   weeklyHeader: {
-    whiteSpace: 'nowrap',  // Prevent line breaks in headers
+    whiteSpace: 'nowrap',  
   },
   weeklyTableCell: {
     border: '1px solid #ddd',

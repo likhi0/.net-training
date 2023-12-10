@@ -91,6 +91,9 @@ function LeaveRequest() {
         <span style={styles.linkSeparator}>   </span>
         <Link to="/ApprovalList" style={styles.link}>Approvals</Link>
       </div>
+      <div className="col-md-6 mt-5">
+        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
+      </div>
     </div>
   );
 }
@@ -102,6 +105,8 @@ const styles = {
   heading: {
     fontSize: "1.5em",
     marginBottom: "20px",
+    marginTop:"70px",
+  
   },
   table: {
     width: "100%",
@@ -135,7 +140,7 @@ const styles = {
   },
   link: {
     textDecoration: "none",
-    color: "#007bff",
+    color: "black",
     cursor: "pointer",
   },
   linkSeparator: {

@@ -38,25 +38,6 @@ namespace TimeSheetHrEmployeeApp.Controllers
             return BadRequest("Could not add time sheet");
         }
         /// <summary>
-        /// updating the time shhet
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="timeSheet"></param>
-        /// <returns></returns>
-        [HttpPut]
-        public IActionResult UpdateTimeSheet(TimeSheet timeSheet)
-        {
-            var updatedProfile = _TimesheetService.UpdateTimeSheet(timeSheet);
-
-            if (updatedProfile != null)
-            {
-                _logger.LogInformation("Updated Profile");
-                return Ok(updatedProfile);
-            }
-            _logger.LogError("failed to update");
-            return BadRequest("Could not update time sheet");
-        }
-        /// <summary>
         /// get all timesheet for users
         /// </summary>
         /// <param name="Username"></param>

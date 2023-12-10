@@ -43,44 +43,17 @@ namespace TimeSheetHrEmployeeApp.Services
         /// <param name="username"></param>
         /// <returns></returns>
 
-        public TimeSheet GetAllTimeSheets(string username)
+        public IList<TimeSheet> GetAllTimeSheets(string username)
         {
-            var user = _TimesheetRepository.GetAll().FirstOrDefault(u => u.Username == username);
+            var user = _TimesheetRepository.GetAll().Where(u => u.Username == username).ToList();
 
             if (user != null)
             {
-                return user;
+                return user.ToList();
             }
 
             throw new NoTimeSheetAvaliableException();
         }
-
-
-        /// <summary>
-        /// updating the timeshhet
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="timeSheet"></param>
-        /// <returns></returns>
-        public TimeSheet UpdateTimeSheet(TimeSheet timeSheet)
-        {
-           
-            
-                var existingTimeSheet = _TimesheetRepository.GetById(timeSheet.TimesheetID);
-                if (existingTimeSheet != null)
-                {
-                    existingTimeSheet.Username = timeSheet.Username;
-                    existingTimeSheet.Period = timeSheet.Period;
-                    existingTimeSheet.HoursWorked = timeSheet.HoursWorked;
-                    existingTimeSheet.OverTime = timeSheet.OverTime;
-                    existingTimeSheet.Comments = timeSheet.Comments;
-
-                    var result = _TimesheetRepository.Update(timeSheet);
-                    return result;
-                }
-
-
-            throw new NoTimeSheetAvaliableException();
-        }
+        
     }
 }

@@ -37,6 +37,7 @@ namespace TimeSheetHrEmployeeApp.Services
                     if (user.Password[i] != userpass[i])
                         return null;
                 }
+                userDTO.Role = user.Role;
                 userDTO.Token = _tokenService.GetToken(userDTO);
                 userDTO.Password = "";
                 return userDTO;

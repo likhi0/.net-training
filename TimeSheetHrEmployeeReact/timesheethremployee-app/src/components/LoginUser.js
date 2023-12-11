@@ -3,10 +3,10 @@ import axios from "axios";
 import './Login.css'; // Import any external CSS file if needed
 
 function LoginUser() {
-  const roles = ["Employee", "HR"];
+  //const roles = ["Employee", "HR"];
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  //const [role, setRole] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loginError, setLoginError] = useState("");
@@ -20,35 +20,33 @@ function LoginUser() {
       setPasswordError("Password cannot be empty");
       return false;
     }
-    if (role === 'select') {
-      setLoginError("Please select a role");
-      return false;
-    }
-    return true;
+    // if (role === 'select') {
+    //   setLoginError("Please select a role");
+    //   return false;
+    // }
+    // return true;
   }
 
   const login = (event) => {
     event.preventDefault();
-    const isValidData = checkUserData();
-
-    if (!isValidData) {
-      return;
-    }
+    
 
     axios.post("http://localhost:5191/api/HrEmployee/Login", {
       username: username,
-      role: role,
+      //role: role,
       password: password
     })
     .then((response) => {
       console.log(response);
       const userData = response.data;
       localStorage.setItem('username', username);
+      const role = userData.role;
       localStorage.setItem('role', role);
       const token = userData.token;
       localStorage.setItem("token", token);
       setLoginError(""); // Clear any previous login errors
       alert("Login successful");
+      window.location.reload();
     })
     .catch((error) => {
       console.log(error);
@@ -91,27 +89,18 @@ function LoginUser() {
                   />
                   <label className='alert alert-danger'>{passwordError}</label>
                 </div>
-                <div className='field padding-bottom--24'>
-                  <label htmlFor='role'>Role</label>
-                  <select
-                    className='field select'
-                    onChange={(e) => setRole(e.target.value)}
-                    value={role}
-                  >
-                    <option value=''>Select Role</option>
-                    {roles.map((r) => (
-                      <option value={r} key={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </select>
-                  
-                </div>
                 <div className='footer-link padding-top--24'>
                   <span>Don't have an account? <a href='/Register'>Sign up</a></span>
                 </div>
                 <div className='field padding-bottom--24'>
                   <input type='submit' name='submit' value='Continue' className='field input' />
+                </div>
+                <div className="col-md-6 mt-5">
+                  <img
+                    src="Images/purple.jpg"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    alt="Timesheet"
+                  />
                 </div>
               </form>
             </div>

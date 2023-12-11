@@ -52,7 +52,7 @@ namespace TimeSheetHrEmployeeTesting
                 AprrovedDate = DateTime.Now.AddDays(1),
                 Status = "Approved",
                 Comment = "No",
-                TimesheetID = 1 // Assigning a TimesheetID for testing
+                TimesheetID = 1 
             };
             var approval2 = new Approval
             {
@@ -60,13 +60,13 @@ namespace TimeSheetHrEmployeeTesting
                 AprrovedDate = DateTime.Now.AddDays(2),
                 Status = "Pending",
                 Comment = "Yes",
-                TimesheetID = 1 // Assigning a TimesheetID for testing
+                TimesheetID = 1 
             };
             approvalService.AddApproval(approval1);
             approvalService.AddApproval(approval2);
 
             // Act
-            var approvals = approvalService.GetAllApprovals(1); // Assuming TimesheetID is 1
+            var approvals = approvalService.GetAllApprovals(1); 
 
             // Assert
             Assert.IsNotNull(approvals);

@@ -11,6 +11,7 @@ function Approval() {
   const [approvedDate, setApprovedDate] = useState("");
   const [status, setStatus] = useState("");
   const [comment, setComment] = useState("");
+  const [username, setUsername] = useState("");
   const role = localStorage.getItem("role");
 
   const navigate = useNavigate();
@@ -93,6 +94,19 @@ function Approval() {
       <h3 style={styles.heading}>Approval</h3>
       <table style={styles.table}>
         <tbody>
+        <tr>
+            <td>
+              <label style={styles.label}>Username</label>
+              <input
+                type="text"
+                style={styles.input}
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
+            </td>
+          </tr>
           <tr>
             <td>
               <label style={styles.label}>TimesheetID</label>
@@ -162,6 +176,9 @@ function Approval() {
           </tr>
         </tbody>
       </table>
+      <div style={styles.linkContainer}>
+        <Link to="/LeaveLists" style={styles.link}>Leave List</Link>
+      </div>
       <div className="col-md-6 mt-5">
         <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
       </div>
@@ -176,6 +193,7 @@ const styles = {
   heading: {
     fontSize: "1.5em",
     marginBottom: "20px",
+    marginTop:"70px",
   },
   table: {
     width: "100%",
@@ -192,7 +210,7 @@ const styles = {
   },
   button: {
     backgroundColor: "green",
-    color: "#fff",
+    color: "green",
     padding: "10px 15px",
     border: "none",
     cursor: "pointer",
@@ -203,16 +221,17 @@ const styles = {
     display: "flex",
     gap: "10px",
     marginTop: "10px",
+    
   },
   statusButton: {
     padding: "10px 15px",
     cursor: "pointer",
+    backgroundColor: "green",
   },
   activeStatusButton: {
     padding: "10px 15px",
     cursor: "pointer",
-    backgroundColor: "#007bff",
-    color: "#fff",
+    color: "blue",
   },
   linkContainer: {
     marginTop: "20px",
@@ -221,6 +240,7 @@ const styles = {
     textDecoration: "none",
     color: "#007bff",
     cursor: "pointer",
+    fontSize:"30px",
   },
   linkSeparator: {
     margin: "0 5px",
@@ -229,6 +249,23 @@ const styles = {
     color: "red",
     margin: "10px 0",
   },
+  usernameContainer: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "15px",
+  },
+  usernameLabel: {
+    marginRight: "10px",
+    fontWeight: "bold",
+  },
+  highlightedUsername: {
+    fontSize: "1.2em",
+    backgroundColor: "",
+    color: " ",
+    padding: "5px 10px",
+    borderRadius: "5px",
+  },
+  
 };
 
 export default Approval;

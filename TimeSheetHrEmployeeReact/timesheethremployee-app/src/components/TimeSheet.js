@@ -18,55 +18,46 @@ const TimeSheet = () => {
     // ... (unchanged validation logic)
     return true; 
   };
-
   const storeDataInDatabase = () => {
     // Sum up hours worked and overtime for each day
     const totalHoursWorkedPerDay = {};
     const totalOvertimePerDay = {};
     var totalsumhoursWorked;
     var totalsumovertime;
-
   
     formData.dayData.forEach((data) => {
-      //console.log("123");
-      //console.log(data);
-      var hours_Worked = [];
-      var over_time =[];
-      daysOfWeek.forEach((day) => {
-        //console.log("567");
-
-        //console.log(data[day]["Hours Worked"]);
-
-        hours_Worked.push(parseInt(data[day]["Hours Worked"]));
-        over_time.push(parseInt(data[day]["Overtime"]));
-
-
-        totalHoursWorkedPerDay[day] = (totalHoursWorkedPerDay[day] || 0) + parseFloat(data[day]?.hoursWorked || 0);
-        totalOvertimePerDay[day] = (totalOvertimePerDay[day] || 0) + parseFloat(data[day]?.overtime || 0);
-    
-      });
-      console.log(eval(hours_Worked.join("+")));
-      totalsumhoursWorked=eval(hours_Worked.join("+"));
-
-      totalsumovertime=eval(over_time.join("+"));
-      //console.log(hours_Worked);
-      //console.log(over_time);
+      // Ensure data is not undefined
+      if (data) {
+        var hours_Worked = [];
+        var over_time = [];
+        daysOfWeek.forEach((day) => {
+          // Ensure data[day] is not undefined
+          if (data[day]) {
+            hours_Worked.push(parseFloat(data[day]["Hours Worked"]) || 0);
+            over_time.push(parseFloat(data[day]["Overtime"]) || 0);
+  
+            totalHoursWorkedPerDay[day] = (totalHoursWorkedPerDay[day] || 0) + parseFloat(data[day]?.hoursWorked || 0);
+            totalOvertimePerDay[day] = (totalOvertimePerDay[day] || 0) + parseFloat(data[day]?.overtime || 0);
+          }
+        });
+        console.log(eval(hours_Worked.join("+")));
+        totalsumhoursWorked = eval(hours_Worked.join("+"));
+  
+        totalsumovertime = eval(over_time.join("+"));
+      }
     });
-    
   
     axios
       .post("http://localhost:5191/api/TimeSheet", {
         username,
         period: formData.period,
-        //hoursWorked:totalsumhoursWorked,
-        hoursWorked:formData.hoursWorked,
-        overtime:formData.overtime,
-        //overtime:totalsumovertime,
+        hoursWorked: totalsumhoursWorked,
+        overtime: totalsumovertime,
         comments: formData.comments,
       })
       .then((response) => {
         console.log(response.data);
-
+  
         // Optionally, you can reset the form after successful submission
         setFormData({
           period: "",
@@ -82,7 +73,7 @@ const TimeSheet = () => {
         alert("Failed to submit data. Please try again.");
       });
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const isUserDataValid = checkUserData();
@@ -219,14 +210,13 @@ const TimeSheet = () => {
 
         </div>
 
-        {formData.period === "Daily" && renderDailyTable()}
-        {formData.period === "Weekly" && renderWeeklyTable()}
+        {formData.period === "Daily" ? renderDailyTable() : renderWeeklyTable()}
         <div style={styles.buttonGroup}>
           <button className="btn btn-primary button" onClick={handleSubmit}>
             Submit
           </button>
         </div>
-        <div className="col-sm-10 " > 
+        <div className="col-sm-5 " > 
       <a
         href="/TimeSheetList"
         className="text-decoration-black mb-3 text-info fw-bold"
@@ -291,7 +281,7 @@ const styles = {
   buttonGroup: {
     display: "flex",
     justifyContent: "space-between",
-    marginTop: "20px",
+    marginTop: "10px",
   },
   weeklyTable: {
     width: '100%',

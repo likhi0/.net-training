@@ -19,7 +19,7 @@ function Logout() {
   return (
     <div
     className="logout-container"
-    style={{ backgroundColor: '#f0f0f0', padding: '200px' }}
+    style={{ padding: '200px' }}
    
     >
       <h1 style={{fontSize:'100px',color:'Black',marginTop:'10px', align: 'center'}}>Thank You!</h1>

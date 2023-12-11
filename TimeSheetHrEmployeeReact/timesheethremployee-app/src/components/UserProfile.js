@@ -27,16 +27,29 @@ function UserProfile() {
           setUserData(user);
         } else {
           console.error("No authentication token found.");
-          navigate("/AddProfiles");
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
+      
+        if (error.response &&
+          error.response.status === 500 &&
+          error.response.data &&
+          error.response.data.includes("No such profile found")) {
+         
+          console.error("Profile not found.");
        
+          navigate("/AddProfiles");
+        } else {
+          // Handle other errors
+          console.error("Unexpected error:", error);
+         
+        }
       }
     };
 
     fetchUserData();
   }, [userName, navigate]);
+
 
   const styles = {
     userProfile: {

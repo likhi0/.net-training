@@ -38,8 +38,9 @@ namespace TimeSheetHrEmployeeApp.Controllers
             return BadRequest("Could not add leave");
         }
         /// <summary>
-        /// getting the leaves
+        /// 
         /// </summary>
+        /// <param name="username"></param>
         /// <returns></returns>
         [HttpGet]
         public ActionResult GetAllLeaves(string username)
@@ -53,5 +54,24 @@ namespace TimeSheetHrEmployeeApp.Controllers
             _logger.LogError("getting leaverequest failed");
             return BadRequest("Could not get leave");
         }
+        [HttpGet]
+        [Route("AllLeaves")]
+        public ActionResult Get()
+        {
+            string errorMessage = string.Empty;
+            try
+            {
+                var result = _leaverequestService.GetLeaves();
+                _logger.LogInformation("all leaves");
+                return Ok(result);
+            }
+            catch (NoLeaveRequestAvailableException e)
+            {
+                errorMessage = e.Message;
+            }
+            _logger.LogError("Getting leaves failed");
+            return BadRequest(errorMessage);
+        }
+
     }
 }

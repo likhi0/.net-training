@@ -5,7 +5,7 @@
         string message;
         public NoLeaveRequestAvailableException()
         {
-            message = "No such timesheet found";
+            message = "No leave requests available";
         }
         public override string Message => message;
     }

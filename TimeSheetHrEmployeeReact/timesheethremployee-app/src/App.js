@@ -16,6 +16,7 @@ import UpdateProfile from './components/UpdateProfile';
 import GetProfile from './components/GetProfile';
 import UserProfile from './components/UserProfile';
 import LeaveRequest from './components/LeaveRequest';
+import LeaveList from './components/LeaveList';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Menu from './components/Menu';
 import Home from './components/Home';
@@ -41,6 +42,7 @@ function App() {
         <Route path="/UpdateTimeSheet" element={<UpdateTimeSheet/>}/>
         <Route path="/LeaveRequest" element={<LeaveRequest/>}/>
         <Route path="/LeaveList" element={<LeaveRequests/>}/>
+        <Route path="/LeaveLists" element={<LeaveList/>}/>
         <Route path="/Approval" element={<Protected> <Approval/></Protected>}/>
         <Route path="/ApprovalList" element={<ApprovalList/>}/>
         <Route path="/Tasks" element={<Protected> <Tasks/></Protected> }/>

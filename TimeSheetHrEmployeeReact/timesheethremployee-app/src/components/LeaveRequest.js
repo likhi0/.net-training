@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
+// ... (previous imports and code)
+
 function LeaveRequest() {
   const UserName = localStorage.getItem('username');
   const [startDate, setStartDate] = useState("");
@@ -9,6 +11,7 @@ function LeaveRequest() {
   const [status, setStatus] = useState("");
 
   var [usernameError, setUsernameError] = useState("");
+
   var checkUserData = () => {
     if (UserName === '') {
       setUsernameError("Username cannot be empty");
@@ -57,12 +60,6 @@ function LeaveRequest() {
         <tbody>
           <tr>
             <td>
-              <label style={styles.label}>Username</label>
-              <input type="text" style={styles.input} value={UserName} readOnly />
-            </td>
-          </tr>
-          <tr>
-            <td>
               <label style={styles.label}>StartDate</label>
               <input type="date" style={styles.input} value={startDate} onChange={(e) => { setStartDate(e.target.value) }} />
             </td>
@@ -76,27 +73,34 @@ function LeaveRequest() {
           <tr>
             <td>
               <label style={styles.label}>Reason</label>
-              <input style={styles.input} value={status} onChange={(e) => { setStatus(e.target.value) }} />
+              <select style={styles.select} value={status} onChange={(e) => { setStatus(e.target.value) }}>
+              <option value="Select a value">Select a value</option>
+                <option value="Accident">Accident</option>
+                <option value="Death of Relative">Death of Relative</option>
+                <option value="Examination">Examination</option>
+                <option value="Hospitalization">Hospitalization</option>
+                <option value="MAT Leave">MAT Leave</option>
+                <option value="Marriage">Marriage</option>
+                <option value="Sickness">Sickness</option>
+                <option value="Self Marriage">Self Marriage</option>
+              </select>
             </td>
           </tr>
           <tr>
             <td>
-              <button style={styles.button} onClick={handleEnter}>Sumbit</button>
+              <button style={styles.button} onClick={handleEnter}>Submit</button>
             </td>
           </tr>
         </tbody>
       </table>
-      <div style={styles.linkContainer}>
-        <Link to="/LeaveList" style={styles.link}>List</Link>
-        <span style={styles.linkSeparator}>   </span>
-        <Link to="/ApprovalList" style={styles.link}>Approvals</Link>
-      </div>
       <div className="col-md-6 mt-5">
         <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
       </div>
     </div>
   );
 }
+
+
 
 const styles = {
   container: {
@@ -116,13 +120,14 @@ const styles = {
     fontWeight: "bold",
     marginBottom: "5px",
   },
+
   input: {
     width: "50%",
     padding: "10px",
     boxSizing: "border-box",
   },
   select: {
-    width: "100%",
+    width: "50%",
     padding: "10px",
     boxSizing: "border-box",
   },

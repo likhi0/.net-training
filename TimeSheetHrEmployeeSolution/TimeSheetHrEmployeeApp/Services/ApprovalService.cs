@@ -21,15 +21,9 @@ namespace TimeSheetHrEmployeeApp.Services
 
         public bool AddApproval(Approval approval)
         {
-            var Approval = new Approval
-            {
-                Approvedby = approval.Approvedby,
-                AprrovedDate = approval.AprrovedDate,
-                Status = approval.Status,
-                Comment = approval.Comment
-            };
+           
             var result = _approvalRepository.Add(approval);
-            if (approval != null)
+            if (result != null)
             {
                 return true;
             }

@@ -51,8 +51,10 @@ const TimeSheet = () => {
       .post("http://localhost:5191/api/TimeSheet", {
         username,
         period: formData.period,
-        hoursWorked: totalsumhoursWorked,
-        overtime: totalsumovertime,
+        hoursWorked: (totalsumhoursWorked || formData.hoursWorked),
+        //hoursWorked: formData.hoursWorked,
+        overtime: (formData.overtime ||totalsumovertime),
+        //overtime: totalsumovertime,
         comments: formData.comments,
       })
       .then((response) => {
@@ -63,7 +65,7 @@ const TimeSheet = () => {
           period: "",
           hoursWorked: "",
           overtime: "",
-          comments: "",
+          comments: "no",
           dayData: Array(3).fill({}),
         });
         alert("Data submitted successfully!");
@@ -210,21 +212,13 @@ const TimeSheet = () => {
 
         </div>
 
-        {formData.period === "Daily" ? renderDailyTable() : renderWeeklyTable()}
+        {formData.period === "Daily" && renderDailyTable()}
+        {formData.period === "Weekly" && renderWeeklyTable()}
         <div style={styles.buttonGroup}>
           <button className="btn btn-primary button" onClick={handleSubmit}>
             Submit
           </button>
         </div>
-        <div className="col-sm-5 " > 
-      <a
-        href="/TimeSheetList"
-        className="text-decoration-black mb-3 text-info fw-bold"
-        style={{ fontSize: '14px', color: 'black' }} 
-      > 
-        List
-      </a>
-    </div>
       </form>
       <div className="col-md-6 mt-5">
         <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />

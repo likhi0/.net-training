@@ -83,15 +83,13 @@ namespace TimeSheetHrEmployeeApp
             builder.Services.AddScoped<IRepository<string, User>, UserRepository>();
             builder.Services.AddScoped<IRepository<int, Profile>, ProfileRepository>();
             builder.Services.AddScoped<IRepository<int, TimeSheet>, TimeSheetRepository>();
-            builder.Services.AddScoped<IRepository<int, TimeSheetDetails>, TimeSheetDetailsRepository>();
             builder.Services.AddScoped<IRepository<int, Tasks>, TasksRepository>();
             builder.Services.AddScoped<IRepository<int, LeaveRequest>, LeaveRequestRepository>();
             builder.Services.AddScoped<IRepository<int, Approval>, ApprovalRepository>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IProfileService, ProfileService>();
-            builder.Services.AddScoped<ITimeSheetService, TimeSheetService>();
-            builder.Services.AddScoped<ITimeSheetDetailsService, TimeSheetDetailsService>();
+            builder.Services.AddScoped<ITimeSheetService, TimeSheetService>();       
             builder.Services.AddScoped<ITasksService, TasksService>();
             builder.Services.AddScoped<ILeaveRequestService, LeaveRequestService>();
             builder.Services.AddScoped<IApprovalService, ApprovalService>();

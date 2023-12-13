@@ -64,23 +64,59 @@ function Menu() {
                   </Link>
                 </div>
               </li>
-              <li className="nav-item ">
+              <li className="nav-item dropdown">
                 <a
-                  className="nav-link"
-                  aria-current="page"
-                  href="TimeSheet"
+                  className="nav-link dropdown-toggle"
+                  href="/#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
                   TimeSheet
                 </a>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <Link className="dropdown-item" to="TimeSheet">
+                    Timesheet
+                  </Link>
+                  <Link className="dropdown-item" to="/TimeSheetList">
+                    TimeSheetList
+                  </Link>
+                  <Link className="dropdown-item" to="/TaskList">
+                    Tasks
+                  </Link>
+                </div>
               </li>
-              <li className="nav-item ">
+              <li className="nav-item dropdown">
                 <a
-                  className="nav-link"
-                  aria-current="page"
-                  href="/LeaveRequest"
+                  className="nav-link dropdown-toggle"
+                  href="/#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
                   Leave
                 </a>
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <Link className="dropdown-item" to="/LeaveRequest">
+                    LeaveRequest
+                  </Link>
+                  <Link className="dropdown-item" to="/LeaveList">
+                    LeaveList
+                  </Link>
+                  <Link className="dropdown-item" to="/ApprovalList">
+                    Approval
+                  </Link>
+                </div>
               </li>
               <li className="nav-item ">
                 <a className="nav-link" aria-current="page" href="/Tasks">

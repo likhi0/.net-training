@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function LeaveRequests() {
   const [leaveRequestsList, setLeaveRequestsList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,6 +23,10 @@ function LeaveRequests() {
         setLoading(false);
       });
   });
+
+  const approve=(request)=>{
+    navigate("/Approval" ,{state: {request}});
+  }
 
   return (
     <div className="leave-list" style={styles.leaveList}>
@@ -40,14 +46,16 @@ function LeaveRequests() {
                 </tr>
               </thead>
               <tbody>
-                {leaveRequestsList.map((leaveRequest) => (
-                  <tr key={leaveRequest.id}>
-                    <td>{leaveRequest.username}</td>
-                    <td>{leaveRequest.startDate}</td>
-                    <td>{leaveRequest.endDate}</td>
-                    <td>{leaveRequest.status}</td>
-                  </tr>
-                ))}
+              {leaveRequestsList.map((leaveRequest) => (
+                <tr key={leaveRequest.id}>
+                  <td>{leaveRequest.username}</td>
+                  <td>{leaveRequest.startDate}</td>
+                  <td>{leaveRequest.endDate}</td>
+                  <td>{leaveRequest.status}</td>
+                  <td class="btn btn-primary" onClick={() => approve(leaveRequest)}>click</td>
+                </tr>
+              ))}
+
               </tbody>
             </table>
           ) : (

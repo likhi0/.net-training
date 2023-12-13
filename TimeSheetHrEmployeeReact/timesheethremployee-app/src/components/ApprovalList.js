@@ -30,10 +30,6 @@ function Approval() {
     <div style={styles.registerForm}>
       <h1 style={styles.alertSuccess}>Approvals</h1>
       <br />
-      <div style={styles.timesheetContainer}>
-        <span style={styles.timesheetLabel}>TimeSheetId:</span>
-        <span style={styles.highlightedTimesheet}>{timesheetID}</span>
-      </div>
       {loading ? (
         <div>Loading...</div>
       ) : (

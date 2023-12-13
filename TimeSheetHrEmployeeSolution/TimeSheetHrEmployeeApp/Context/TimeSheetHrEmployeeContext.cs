@@ -12,7 +12,7 @@ namespace TimeSheetHrEmployeeApp.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<TimeSheet> TimeSheets { get; set; }
-        public DbSet<TimeSheetDetails> TimesheetDetails { get; set; }
+       
         public DbSet<Tasks> Tasks { get; set; }
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
         public DbSet<Approval> Approvals { get; set; }

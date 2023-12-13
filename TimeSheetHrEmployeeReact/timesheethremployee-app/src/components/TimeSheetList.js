@@ -29,10 +29,7 @@ function TimeSheetList() {
   return (
     <div className="timesheet-list">
       <h1 style={styles.alertSuccess}>TimeSheet</h1>
-      <div style={styles.usernameContainer}>
-        <span style={styles.usernameLabel}>Username:</span>
-        <span style={styles.highlightedUsername}>{userName}</span>
-      </div>
+      
       {loading ? (
         <div>Loading...</div>
       ) : (

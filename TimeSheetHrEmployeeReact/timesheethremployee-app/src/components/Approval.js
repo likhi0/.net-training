@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 
 function Approval() {
+  const location = useLocation();
+  const { request } = location.state || {};
+
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  // useEffect(() => {
+  //   console.log(request);
+  //   const intervalId = setInterval(() => {
+  //     setCurrentDate(new Date());
+  //   }, 1000)},[]);
+  
   const statuses = ["Approved", "Disapproved"];
-  const [timesheetID, setTimeSheetID] = useState("");
-  const [approvedBy, setApprovedBy] = useState("");
-  const [approvedDate, setApprovedDate] = useState("");
+  const [timesheetID, setTimeSheetID] = useState(request.leaveRequestID);
+  const [approvedBy, setApprovedBy] = useState(localStorage.getItem("username"));
+  const [approvedDate, setApprovedDate] = useState(currentDate);
   const [status, setStatus] = useState("");
   const [comment, setComment] = useState("");
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(request.username);
   const role = localStorage.getItem("role");
 
   const navigate = useNavigate();
@@ -57,11 +68,11 @@ function Approval() {
   };
 
   const handleSubmit = () => {
-    var checkData = checkUserData();
-    if (!checkData) {
-      alert("Please check your data");
-      return;
-    }
+    // var checkData = checkUserData();
+    // if (!checkData) {
+    //   alert("Please check your data");
+    //   return;
+    // }
 
     axios
       .post(
@@ -97,7 +108,7 @@ function Approval() {
         <tr>
             <td>
               <label style={styles.label}>Username</label>
-              <input
+              <input disabled
                 type="text"
                 style={styles.input}
                 value={username}
@@ -109,8 +120,8 @@ function Approval() {
           </tr>
           <tr>
             <td>
-              <label style={styles.label}>TimesheetID</label>
-              <input
+              <label style={styles.label}>RequestID</label>
+              <input disabled
                 type="number"
                 style={styles.input}
                 value={timesheetID}
@@ -123,7 +134,7 @@ function Approval() {
           <tr>
             <td>
               <label style={styles.label}>ApprovedBy</label>
-              <input
+              <input disabled
                 type="text"
                 style={styles.input}
                 value={approvedBy}
@@ -136,8 +147,8 @@ function Approval() {
           <tr>
             <td>
               <label style={styles.label}>ApprovedDate</label>
-              <input
-                type="date"
+              <input disabled
+                type="te"
                 style={styles.input}
                 value={approvedDate}
                 onChange={(e) => {
@@ -177,14 +188,18 @@ function Approval() {
         </tbody>
       </table>
       <div style={styles.linkContainer}>
-        <Link to="/LeaveLists" style={styles.link}>Leave List</Link>
-      </div>
+      <Link to="/LeaveLists" style={styles.buttonLink}>
+        <button style={styles.buttonLink}>Leave List</button>
+      </Link>
+    </div>
       <div className="col-md-6 mt-5">
         <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
       </div>
     </div>
   );
 }
+
+  
 
 const styles = {
   container: {

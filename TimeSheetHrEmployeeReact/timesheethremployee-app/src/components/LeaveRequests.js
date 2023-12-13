@@ -29,10 +29,7 @@ function LeaveRequests() {
     <div className="leave-list" style={styles.leaveList}>
       <h1 style={styles.alertSuccess}>Leaves</h1>
 
-      <div style={styles.usernameContainer}>
-        <span style={styles.usernameLabel}>Username:</span>
-        <span style={styles.highlightedUsername}>{UserName}</span>
-      </div>
+      
 
       {loading ? (
         <div style={styles.loading}>Loading...</div>

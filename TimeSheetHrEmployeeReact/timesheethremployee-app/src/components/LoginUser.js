@@ -76,9 +76,6 @@ function LoginUser() {
                 <div className='field padding-bottom--24'>
                   <div className='grid--50-50'>
                     <label htmlFor='password'>Password</label>
-                    <div className='reset-pass'>
-                      <a href='#'>Forgot your password?</a>
-                    </div>
                   </div>
                   <input
                     type='password'

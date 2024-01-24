@@ -92,13 +92,6 @@ function LoginUser() {
                 <div className='field padding-bottom--24'>
                   <input type='submit' name='submit' value='Continue' className='field input' />
                 </div>
-                <div className="col-md-6 mt-5">
-                  <img
-                    src="Images/purple.jpg"
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    alt="Timesheet"
-                  />
-                </div>
               </form>
             </div>
           </div>

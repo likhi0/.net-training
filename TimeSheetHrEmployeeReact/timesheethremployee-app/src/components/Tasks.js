@@ -44,9 +44,6 @@ function Tasks() {
             <label className="form-control" htmlFor="ttaskDescription">Task Description</label>
             <input id="ttaskDescription" type="text" className="form-control" value={taskDescription} onChange={(e) => { setTaskDescription(e.target.value) }} />
             <button className="btn btn-primary button" onClick={clickAdd}>Enter</button>
-            <div className="col-md-6 mt-5">
-        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
-      </div>
         </div>
     );
 }

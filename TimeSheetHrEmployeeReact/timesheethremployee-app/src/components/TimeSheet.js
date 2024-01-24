@@ -90,6 +90,13 @@ const TimeSheet = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Validate if the input is a positive integer
+    if ((name === "hoursWorked" || name === "overtime") && (!/^\d+$/.test(value) || parseInt(value) < 0)) {
+      // If not a positive integer, do not update state
+      return;
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -98,6 +105,13 @@ const TimeSheet = () => {
 
   const handleDayDataChange = (day, field, e) => {
     const { value } = e.target;
+
+    // Validate if the input is a positive integer
+    if ((field === "Hours Worked" || field === "Overtime") && (!/^\d+$/.test(value) || parseInt(value) < 0)) {
+      // If not a positive integer, do not update state
+      return;
+    }
+
     setFormData((prevData) => {
       const newDayData = [...prevData.dayData];
       newDayData.forEach((data) => {
@@ -109,7 +123,6 @@ const TimeSheet = () => {
       };
     });
   };
-
   const renderDailyTable = () => (
     <table style={styles.table}>
       <thead>
@@ -220,9 +233,6 @@ const TimeSheet = () => {
           </button>
         </div>
       </form>
-      <div className="col-md-6 mt-5">
-        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
-      </div>
     </div>
     
   );

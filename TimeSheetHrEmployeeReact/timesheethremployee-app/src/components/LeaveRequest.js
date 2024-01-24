@@ -53,6 +53,16 @@ function LeaveRequest() {
       })
   }
 
+
+   const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    month = month < 10 ? `0${month}` : month;
+    const day = today.getDate();
+    return `${year}-${month}-${day}`;
+  };
+
   return (
     <div style={styles.container}>
       <h3 style={styles.heading}>Leave Request</h3>
@@ -61,13 +71,25 @@ function LeaveRequest() {
           <tr>
             <td>
               <label style={styles.label}>StartDate</label>
-              <input type="date" style={styles.input} value={startDate} onChange={(e) => { setStartDate(e.target.value) }} />
+              <input
+                type="date"
+                style={styles.input}
+                value={startDate}
+                min={getCurrentDate()} // Set minimum date to the current date
+                onChange={(e) => { setStartDate(e.target.value) }}
+              />
             </td>
           </tr>
           <tr>
             <td>
               <label style={styles.label}>EndDate</label>
-              <input type="date" style={styles.input} value={endDate} onChange={(e) => { setEndDate(e.target.value) }} />
+              <input
+                type="date"
+                style={styles.input}
+                value={endDate}
+                min={getCurrentDate()} // Set minimum date to the current date
+                onChange={(e) => { setEndDate(e.target.value) }}
+              />
             </td>
           </tr>
           <tr>
@@ -93,9 +115,6 @@ function LeaveRequest() {
           </tr>
         </tbody>
       </table>
-      <div className="col-md-6 mt-5">
-        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
-      </div>
     </div>
   );
 }

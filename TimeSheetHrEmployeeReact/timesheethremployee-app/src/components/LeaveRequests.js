@@ -68,9 +68,6 @@ function LeaveRequests() {
         Back
       </a>
     </div>
-    <div className="col-md-6 mt-5">
-        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
-      </div>
     </div>
   );
 }
@@ -114,7 +111,7 @@ const styles = {
   },
   alertSuccess: {
     backgroundColor: "",
-    color: "#fff",
+    color: "black",
     padding: "10px",
     marginTop: "70px",
     marginBottom: "20px",

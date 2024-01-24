@@ -8,25 +8,19 @@ function Approval() {
   const location = useLocation();
   const { request } = location.state || {};
 
-  const [currentDate, setCurrentDate] = useState(new Date());
-
-  // useEffect(() => {
-  //   console.log(request);
-  //   const intervalId = setInterval(() => {
-  //     setCurrentDate(new Date());
-  //   }, 1000)},[]);
-  
+  // Use optional chaining to handle potential undefined values
   const statuses = ["Approved", "Disapproved"];
-  const [timesheetID, setTimeSheetID] = useState(request.leaveRequestID);
-  const [approvedBy, setApprovedBy] = useState(localStorage.getItem("username"));
-  const [approvedDate, setApprovedDate] = useState(currentDate);
+  const timesheetIDInitial = request?.leaveRequestID || '';
+  const [timesheetID, setTimesheetID] = useState(timesheetIDInitial);
+  const [approvedBy, setApprovedBy] = useState(localStorage.getItem("firstName") || '');
+  const [approvedDate, setApprovedDate] = useState(new Date());
   const [status, setStatus] = useState("");
   const [comment, setComment] = useState("");
-  const [username, setUsername] = useState(request.username);
+  const username = request?.username || '';
   const role = localStorage.getItem("role");
 
   const navigate = useNavigate();
-  var [error, setError] = useState("");
+  const [error, setError] = useState("");
   if (role !== "HR") {
     alert("You don't have access to this page");
     setTimeout(() => {
@@ -112,9 +106,7 @@ function Approval() {
                 type="text"
                 style={styles.input}
                 value={username}
-                onChange={(e) => {
-                  setUsername(e.target.value);
-                }}
+                
               />
             </td>
           </tr>
@@ -126,7 +118,7 @@ function Approval() {
                 style={styles.input}
                 value={timesheetID}
                 onChange={(e) => {
-                  setTimeSheetID(e.target.value);
+                  setTimesheetID(e.target.value);
                 }}
               />
             </td>
@@ -172,17 +164,19 @@ function Approval() {
           </tr>
           <tr>
             <td>
-              <div style={styles.statusButtonsContainer}>
+            <div style={styles.statusButtonsContainer}>
                 {statuses.map((s) => (
                   <button
                     key={s}
                     style={status === s ? styles.activeStatusButton : styles.statusButton}
                     onClick={() => handleStatusClick(s)}
+                    data-value={s}
                   >
                     {s}
                   </button>
                 ))}
               </div>
+
             </td>
           </tr>
         </tbody>
@@ -192,9 +186,6 @@ function Approval() {
         <button style={styles.buttonLink}>Leave List</button>
       </Link>
     </div>
-      <div className="col-md-6 mt-5">
-        <img src="Images/purple.jpg" style={{ width: "100%", height: "100%" }} alt="Timesheet" />
-      </div>
     </div>
   );
 }

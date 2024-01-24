@@ -17,7 +17,7 @@ import GetProfile from './components/GetProfile';
 import UserProfile from './components/UserProfile';
 import LeaveRequest from './components/LeaveRequest';
 import LeaveList from './components/LeaveList';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes,Navigate } from 'react-router-dom';
 import Menu from './components/Menu';
 import Home from './components/Home';
 import Logout from './components/Logout';
@@ -29,7 +29,8 @@ function App() {
       <BrowserRouter>
       <Menu/>
       <Routes>
-        <Route path="/Home" element={<Home/>}/>
+      <Route path="/" element={<Navigate to="/Home" />} />
+          <Route path="/Home" element={<Home />} />
         <Route path="/Register" element={<RegisterUser/>}/>
         <Route path="/Login" element={<LoginUser/>}/>
         <Route path="/AddProfiles" element={<AddProfiles />} />

@@ -49,9 +49,6 @@ function AddProfiles(){
             <input id="ptitle" type="text" className="form-control" value={jobTitle} onChange={(e)=>{setJobTitle(e.target.value)}}/>
             <button onClick={clickAdd} className="btn btn-primary">AddProfiles</button>
             </div> 
-            <div className="col-md-6 mt-5">
-        <img src="Images/purple.jpg" style={{ width: "100%", height:"180%" }} alt="Timesheet" />
-      </div>
         </div>
         
     );

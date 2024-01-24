@@ -119,9 +119,6 @@ function RegisterUser() {
             </div>
           </div>
         </div>
-        <div className="col-md-6 mt-5">
-          <img src="Images/purple.jpg" style={{ width: "100%", height:"120%" }} alt="Timesheet" />
-        </div>
       </div>
     </div>
   );

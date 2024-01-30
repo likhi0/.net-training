@@ -1,0 +1,30 @@
+.row {
+    position: relative;
+  }
+  
+  
+  .btn {
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .btn-warning {
+    color: #212529; /* Button text color */
+    padding: 5px 10px; /* Adjust padding as needed */
+
+ 
+  }
+  
+  .display-4 {
+    font-size: 2.5rem; /* Adjust the font size as needed */
+  }
+  .time{
+    background-image:"C:\Users\2000112443\Downloads\Time-sheet-employee-app-main\TimeSheetHrEmployeeReact\Timesheethremployee-app\public\Images\timesheet1";
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    align-items: center;
+    display: flex;
+  }
+  
+ 

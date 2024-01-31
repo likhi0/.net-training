@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import TimeSheet from "./TimeSheet";
 
 function LeaveRequests() {
   const UserName = localStorage.getItem("username");
@@ -61,6 +62,9 @@ function LeaveRequests() {
         </div>
       )}
       <div className="col-sm-15 " > 
+      
+          <TimeSheet leaveRequestsList={leaveRequestsList} />
+       
       <a
         href="/LeaveRequest"
         className="text-decoration-black mb-3 text-info fw-bold"

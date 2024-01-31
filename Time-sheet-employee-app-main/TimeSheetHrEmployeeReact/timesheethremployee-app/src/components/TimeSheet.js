@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const TimeSheet = () => {
+const TimeSheet = ({ LeaveRequests }) => {
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
   const rowHeadings = ["Hours Worked", "Overtime", "Comments"];
-  const periods =["Daily","Weekly"]
+  const periods = ["Daily", "Weekly"];
   const [formData, setFormData] = useState({
     period: "",
     hoursWorked: "",
@@ -13,11 +13,41 @@ const TimeSheet = () => {
     dayData: Array(3).fill({}),
   });
   const username = localStorage.getItem("username");
+  
 
   const checkUserData = () => {
     // ... (unchanged validation logic)
     return true; 
   };
+ 
+  const getCurrentWeekDates = () => {
+    const currentDate = new Date();
+    const currentDay = currentDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    const startOfWeek = new Date(currentDate);
+    startOfWeek.setDate(currentDate.getDate() - currentDay + (currentDay === 0 ? -6 : 1)); // Start of the week (Monday)
+
+    const weekDates = [];
+    for (let i = 0; i < 5; i++) {
+      const day = new Date(startOfWeek);
+      day.setDate(startOfWeek.getDate() + i);
+      weekDates.push({
+        day: day.getDate(),
+        month: day.toLocaleString('en-US', { month: 'short' }), // Display month as short name (e.g., Jan, Feb)
+        year: day.getFullYear(),
+      });
+    }
+
+    return weekDates;
+  };
+  const getCurrentDate = () => {
+    const currentDate = new Date();
+    return {
+      day: currentDate.getDate(),
+      month: currentDate.toLocaleString('en-US', { month: 'short' }),
+      year: currentDate.getFullYear(),
+    };
+  };
+  
   const storeDataInDatabase = () => {
     // Sum up hours worked and overtime for each day
     const totalHoursWorkedPerDay = {};
@@ -46,15 +76,22 @@ const TimeSheet = () => {
         totalsumovertime = eval(over_time.join("+"));
       }
     });
+    const leaveRequestDates = LeaveRequests.map(
+      (leaveRequest) => leaveRequest.startDate.toLocaleDateString()
+    );
   
     axios
-      .post("http://localhost:5191/api/TimeSheet", {
+      .post('http://localhost:5191/api/TimeSheet', {
         username,
         period: formData.period,
-        hoursWorked: (totalsumhoursWorked || formData.hoursWorked),
-        //hoursWorked: formData.hoursWorked,
-        overtime: (formData.overtime ||totalsumovertime),
-        //overtime: totalsumovertime,
+        hoursWorked:
+          leaveRequestDates.includes(getCurrentDate().toLocaleDateString())
+            ? 0
+            : totalsumhoursWorked || formData.hoursWorked,
+        overtime:
+          leaveRequestDates.includes(getCurrentDate().toLocaleDateString())
+            ? 0
+            : formData.overtime || totalsumovertime,
         comments: formData.comments,
       })
       .then((response) => {
@@ -127,12 +164,14 @@ const TimeSheet = () => {
     <table style={styles.table}>
       <thead>
         <tr>
+          <th>Date</th>
           <th>Fields</th>
           <th>Data</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td>{`${getCurrentDate().day} ${getCurrentDate().month} ${getCurrentDate().year}`}</td>
           <td>Hours Worked</td>
           <td>
             <input
@@ -144,6 +183,7 @@ const TimeSheet = () => {
           </td>
         </tr>
         <tr>
+          <td></td>
           <td>Overtime</td>
           <td>
             <input
@@ -155,6 +195,7 @@ const TimeSheet = () => {
           </td>
         </tr>
         <tr>
+          <td></td>
           <td>Comments</td>
           <td>
             <input
@@ -174,8 +215,10 @@ const TimeSheet = () => {
       <thead>
         <tr style={styles.weeklyHeader}>
           <th></th>
-          {daysOfWeek.map((day) => (
-            <th key={day} style={styles.weeklyTableCell}>{day}</th>
+          {daysOfWeek.map((day, index) => (
+            <th key={day} style={styles.weeklyTableCell}>
+              {`${day} - ${getCurrentWeekDates()[index].day} ${getCurrentWeekDates()[index].month} ${getCurrentWeekDates()[index].year}`}
+            </th>
           ))}
         </tr>
       </thead>
@@ -183,11 +226,11 @@ const TimeSheet = () => {
         {rowHeadings.map((field) => (
           <tr key={field}>
             <td style={styles.weeklyTableCell}>{field}</td>
-            {daysOfWeek.map((day) => (
+            {daysOfWeek.map((day, index) => (
               <td key={day} style={styles.weeklyTableCell}>
                 <input
                   type="text"
-                  name={'dayData[${day}][${field}]'}
+                  name={`dayData[${day}][${field}]`}
                   value={formData.dayData[0]?.[day]?.[field] || ""}
                   onChange={(e) => handleDayDataChange(day, field, e)}
                 />
@@ -311,5 +354,4 @@ const styles = {
     textAlign: 'center',
   },
 };
-
 export default TimeSheet;

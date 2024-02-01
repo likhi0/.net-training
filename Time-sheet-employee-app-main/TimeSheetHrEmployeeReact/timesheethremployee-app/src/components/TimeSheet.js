@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const TimeSheet = ({ LeaveRequests }) => {
+const TimeSheet = ({ leaveRequestsList}) => {
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
   const rowHeadings = ["Hours Worked", "Overtime", "Comments"];
   const periods = ["Daily", "Weekly"];
@@ -76,22 +76,16 @@ const TimeSheet = ({ LeaveRequests }) => {
         totalsumovertime = eval(over_time.join("+"));
       }
     });
-    const leaveRequestDates = LeaveRequests.map(
-      (leaveRequest) => leaveRequest.startDate.toLocaleDateString()
-    );
-  
+    const currentDateStr = getCurrentDate();
+  const isLeaveRequested = leaveRequestsList.some(
+    (leaveRequest) => leaveRequest.startDate.split('T')[0] === currentDateStr
+  );
     axios
       .post('http://localhost:5191/api/TimeSheet', {
         username,
         period: formData.period,
-        hoursWorked:
-          leaveRequestDates.includes(getCurrentDate().toLocaleDateString())
-            ? 0
-            : totalsumhoursWorked || formData.hoursWorked,
-        overtime:
-          leaveRequestDates.includes(getCurrentDate().toLocaleDateString())
-            ? 0
-            : formData.overtime || totalsumovertime,
+        hoursWorked: isLeaveRequested ? 0 : totalsumhoursWorked || formData.hoursWorked,
+        overtime: isLeaveRequested ? 0 : formData.overtime || totalsumovertime,
         comments: formData.comments,
       })
       .then((response) => {
@@ -160,6 +154,7 @@ const TimeSheet = ({ LeaveRequests }) => {
       };
     });
   };
+  
   const renderDailyTable = () => (
     <table style={styles.table}>
       <thead>

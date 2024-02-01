@@ -54,6 +54,16 @@ namespace TimeSheetHrEmployeeApp.Services
 
             throw new NoTimeSheetAvaliableException();
         }
-        
+        public IList<TimeSheet> GetTimeSheets()
+        {
+            var timeSheets = _TimesheetRepository.GetAll();
+            if (timeSheets != null)
+            {
+                return timeSheets.ToList();
+            }
+            throw new NoTimeSheetAvaliableException();
+        }
+
+
     }
 }

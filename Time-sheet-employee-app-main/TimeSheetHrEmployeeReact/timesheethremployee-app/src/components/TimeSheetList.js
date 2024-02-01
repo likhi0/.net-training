@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function TimeSheetList() {
-  const userName = localStorage.getItem("username");
+  //const userName = localStorage.getItem("username");
   const [timeSheetList, setTimeSheetList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const username = request?.username || '';
 
   useEffect(() => {
     axios
       .get("http://localhost:5191/api/TimeSheet", {
         params: {
-          UserName: userName,
+          userName: username,
         },
       })
       .then((response) => {
@@ -24,7 +25,7 @@ function TimeSheetList() {
       .finally(() => {
         setLoading(false);
       });
-  }, [userName]);
+  }, [username]);
 
   return (
     <div style={styles.body}>

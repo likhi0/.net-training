@@ -104,5 +104,14 @@ namespace TimeSheetHrEmployeeApp.Services
             }
             throw new NoProfileFoundException();
         }
+        public IList<Profile> GetAllProfiles()
+        {
+            var timeSheets = _profileRepository.GetAll();
+            if (timeSheets != null)
+            {
+                return timeSheets.ToList();
+            }
+            throw new NoTimeSheetAvaliableException();
+        }
     }
 }

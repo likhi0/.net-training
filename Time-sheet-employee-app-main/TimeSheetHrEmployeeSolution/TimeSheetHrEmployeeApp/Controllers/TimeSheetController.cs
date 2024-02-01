@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TimeSheetHrEmployeeApp.Exceptions;
 using TimeSheetHrEmployeeApp.Interface;
 using TimeSheetHrEmployeeApp.Models;
 using TimeSheetHrEmployeeApp.Models.DTO;
@@ -55,6 +56,25 @@ namespace TimeSheetHrEmployeeApp.Controllers
             _logger.LogError("failed to get timesheet");
             return BadRequest("No timesheets found");
         }
+        [HttpGet]
+        [Route("AllTimeSheets")]
+        public ActionResult Get()
+        {
+            string errorMessage = string.Empty;
+            try
+            {
+                var result = _TimesheetService.GetTimeSheets();
+                _logger.LogInformation("all timesheets");
+                return Ok(result);
+            }
+            catch (NoTimeSheetAvaliableException e)
+            {
+                errorMessage = e.Message;
+            }
+            _logger.LogError("Getting all timesheets failed");
+            return BadRequest(errorMessage);
+        }
+
 
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Framework;
 using Microsoft.Extensions.Logging;
+using TimeSheetHrEmployeeApp.Exceptions;
 using TimeSheetHrEmployeeApp.Interface;
 using TimeSheetHrEmployeeApp.Models;
 using TimeSheetHrEmployeeApp.Models.DTO;
@@ -97,6 +98,24 @@ namespace TimeSheetHrEmployeeApp.Controllers
 
             _logger.LogError("failed to get profile");
             return BadRequest("No profile found");
+        }
+        [HttpGet]
+        [Route("AllProfiles")]
+        public ActionResult Get()
+        {
+            string errorMessage = string.Empty;
+            try
+            {
+                var result = _profileService.GetAllProfiles();
+                _logger.LogInformation("all profiles");
+                return Ok(result);
+            }
+            catch (NoProfileFoundException e)
+            {
+                errorMessage = e.Message;
+            }
+            _logger.LogError("Getting all profiles failed");
+            return BadRequest(errorMessage);
         }
     }
 }

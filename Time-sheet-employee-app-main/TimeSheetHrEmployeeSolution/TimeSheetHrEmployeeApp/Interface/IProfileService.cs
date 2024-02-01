@@ -9,5 +9,6 @@ namespace TimeSheetHrEmployeeApp.Interface
         ProfileDTO UpdateProfile(ProfileDTO profileDTO);
         bool DeleteProfile(string username);
         Profile GetUserProfile(string username);
+        IList<Profile> GetAllProfiles();
     }
 }

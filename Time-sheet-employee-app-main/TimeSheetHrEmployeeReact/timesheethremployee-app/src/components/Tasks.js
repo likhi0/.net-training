@@ -7,7 +7,7 @@ function Tasks() {
     const role = localStorage.getItem("role");
     const navigate = useNavigate();
 
-    if (role !== "HR") {
+    if (role !== "Hr") {
         alert("You don't have access to this page");
         
         return null;

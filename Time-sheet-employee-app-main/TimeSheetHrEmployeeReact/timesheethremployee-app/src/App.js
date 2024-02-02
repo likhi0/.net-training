@@ -20,7 +20,7 @@ import LeaveList from './components/LeaveList';
 import { BrowserRouter, Route, Routes,Navigate } from 'react-router-dom';
 import Menu from './components/Menu';
 import Home from './components/Home';
-import WelcomePage from './components/welcomepage';
+import WelcomePage from './components/Welcome';
 import EmployeeTimesheet from './components/EmployeeTimesheet';
 import Logout from './components/Logout';
 import Protected from './Protected';
@@ -51,7 +51,7 @@ function App() {
         <Route path="/Tasks" element={<Protected> <Tasks/></Protected> }/>
         <Route path="/TaskList" element={<TaskList/>}/>
         <Route path="/UserProfile" element={<UserProfile/>}/>
-        <Route path="/welcomepage" element={<WelcomePage />} />
+        <Route path="/Welcome" element={<WelcomePage />} />
         <Route path="/EmployeeTimesheet" element={<EmployeeTimesheet/>}/>
 
         

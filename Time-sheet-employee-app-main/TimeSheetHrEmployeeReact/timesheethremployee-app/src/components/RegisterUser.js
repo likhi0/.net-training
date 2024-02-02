@@ -3,7 +3,7 @@ import axios from "axios";
 import './RegisterUser.css';
 
 function RegisterUser() {
-  const roles = ["Employee", "HR"];
+  const roles = ["Employee", "Hr"];
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");

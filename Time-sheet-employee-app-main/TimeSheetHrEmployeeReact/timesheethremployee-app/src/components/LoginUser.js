@@ -1,19 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
 import './Login.css'; // Import any external CSS file if needed
-
+import { useNavigate } from "react-router-dom";
+ 
 function LoginUser() {
-  //const roles = ["Employee", "HR"];
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //const [role, setRole] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loginError, setLoginError] = useState("");
-  const navigate = useNavigate();
-
+  const navigate = useNavigate(); // Initialize useNavigate
+ 
   const checkUserData = () => {
     if (username === '') {
       setUsernameError("Username cannot be empty");
@@ -23,25 +20,21 @@ function LoginUser() {
       setPasswordError("Password cannot be empty");
       return false;
     }
-    // if (role === 'select') {
-    //   setLoginError("Please select a role");
-    //   return false;
-    // }
-    // return true;
+    return true;
   }
-
-
+ 
   const login = (event) => {
     event.preventDefault();
-    
-
+ 
+    if (!checkUserData()) {
+      return;
+    }
+ 
     axios.post("http://localhost:5191/api/HrEmployee/Login", {
-      username: username,
-      //role: role,
-      password: password
+      username: username, // Ensure this matches your backend API expectations
+      password: password // Ensure this matches your backend API expectations
     })
     .then((response) => {
-      console.log(response);
       const userData = response.data;
       localStorage.setItem('username', username);
       const role = userData.role;
@@ -50,18 +43,17 @@ function LoginUser() {
       localStorage.setItem("token", token);
       setLoginError(""); // Clear any previous login errors
       alert("Login successful");
-      window.location.reload();
-      navigate('/welcomepage');
-      
+      // Navigate to welcome page
+      navigate('/Welcome');
     })
     .catch((error) => {
       console.log(error);
-      setLoginError("Invalid username, password, or role"); 
+      setLoginError("Invalid username or password");
+      window.alert("Invalid username or password"); // Use window.alert for a native alert
     });
   }
-
+ 
   return (
-    <div className='body'>
     <div className='login-root'>
       <div className='box-root padding-top--24 flex-flex flex-direction--column' style={{ flexGrow: 1, zIndex: 9 }}>
         <div className='formbg-outer'>
@@ -70,10 +62,10 @@ function LoginUser() {
               <span className='padding-bottom--15'>Sign in to your account</span>
               <form id='stripe-login' onSubmit={login}>
                 <div className='field padding-bottom--24'>
-                  <label htmlFor='email'>Email</label>
+                  <label htmlFor='username'>Username</label>
                   <input
-                    type='email'
-                    name='email'
+                    type='text'
+                    name='username'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className='field input'
@@ -105,9 +97,7 @@ function LoginUser() {
         </div>
       </div>
     </div>
-    </div>
   );
-  }
-
-
+}
+ 
 export default LoginUser;

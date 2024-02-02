@@ -10,6 +10,7 @@ namespace TimeSheetHrEmployeeApp.Models
         public string Period { get; set; } = string.Empty;
         public double HoursWorked { get; set; }
         public double OverTime { get;set; }
+        //public List<TimeSheet>? Timesheets { get; set; }
         public string Comments { get; set; } = string.Empty;
         [ForeignKey("Username")]
         public User? User { get; set; }

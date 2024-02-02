@@ -21,7 +21,7 @@ function Approval() {
 
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  if (role !== "HR") {
+  if (role !== "Hr") {
     alert("You don't have access to this page");
     
     return null;

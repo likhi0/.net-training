@@ -21,6 +21,7 @@ import { BrowserRouter, Route, Routes,Navigate } from 'react-router-dom';
 import Menu from './components/Menu';
 import Home from './components/Home';
 import WelcomePage from './components/welcomepage';
+import EmployeeTimesheet from './components/EmployeeTimesheet';
 import Logout from './components/Logout';
 import Protected from './Protected';
 //import App1 from'./components/App1';
@@ -51,6 +52,7 @@ function App() {
         <Route path="/TaskList" element={<TaskList/>}/>
         <Route path="/UserProfile" element={<UserProfile/>}/>
         <Route path="/welcomepage" element={<WelcomePage />} />
+        <Route path="/EmployeeTimesheet" element={<EmployeeTimesheet/>}/>
 
         
         

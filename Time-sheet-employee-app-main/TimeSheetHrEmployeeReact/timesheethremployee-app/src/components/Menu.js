@@ -1,13 +1,16 @@
-import React, { useState ,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Menu() {
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null);
 
-  // Simulate a function to check the user's login status (you should replace this with your actual logic)
+  // Simulate a function to check the user's login status and role (replace with your actual logic)
   const checkLoginStatus = () => {
     const token = localStorage.getItem("token");
-    setLoggedIn(!!token); // Update isLoggedIn based on the presence of the token
+    const role = localStorage.getItem("role"); // Assuming you store the user's role in localStorage
+    setLoggedIn(!!token);
+    setUserRole(role);
   };
 
   // Call checkLoginStatus when the component mounts
@@ -16,9 +19,11 @@ function Menu() {
   }, []);
 
   const handleLogout = () => {
-    // Simulate a logout action (you should replace this with your actual logout logic)
+    // Simulate a logout action (replace with your actual logout logic)
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     setLoggedIn(false);
+    setUserRole(null);
   };
 
   return (
@@ -47,13 +52,12 @@ function Menu() {
           <div className="collapse d-md-flex justify-content-end navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav navigations">
               <li className="nav-item">
-                <Link className="nav-link" to="/Home">
-                  
-                </Link>
+                <Link className="nav-link" to="/Home"></Link>
               </li>
 
-              {isLoggedIn ? (
+              {isLoggedIn && userRole === "Hr" ? (
                 <>
+                  {/* HR Role Menu Items */}
                   <li className="nav-item dropdown">
                     <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Profile
@@ -67,6 +71,41 @@ function Menu() {
                       </Link>
                     </div>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/Tasks">
+                      Task
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                  <Link className="dropdown-item" to="/EmployeeTimesheet">
+                        EmployeeTimeSheets
+                      </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/Approval">
+                      Approval
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/Logout" onClick={handleLogout}>
+                      Logout
+                    </Link>
+                  </li>
+                </>
+              ) : isLoggedIn && userRole === "Employee" ? (
+                <>
+                  {/* Employee Role Menu Items */}
+                  <li className="nav-item dropdown">
+                    <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Profile
+                    </Link>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <Link className="dropdown-item" to="/UserProfile">
+                        User Details
+                      </Link>
+                    </div>
+                  </li>
                   <li className="nav-item dropdown">
                     <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       TimeSheet
@@ -75,6 +114,7 @@ function Menu() {
                       <Link className="dropdown-item" to="/TimeSheet">
                         Timesheet
                       </Link>
+                     
                       <Link className="dropdown-item" to="/TimeSheetList">
                         TimeSheetList
                       </Link>
@@ -94,18 +134,11 @@ function Menu() {
                       <Link className="dropdown-item" to="/LeaveList">
                         LeaveList
                       </Link>
-                      <Link className="dropdown-item" to="/ApprovalList">
-                        Approval
-                      </Link>
+                      
                     </div>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/Tasks">
-                      Task
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/Approval">
+                    <Link className="dropdown-item" to="/ApprovalList">
                       Approval
                     </Link>
                   </li>
@@ -117,7 +150,7 @@ function Menu() {
                 </>
               ) : (
                 <>
-                  
+                  {/* Default Menu Items (when not logged in or role not determined) */}
                 </>
               )}
             </ul>

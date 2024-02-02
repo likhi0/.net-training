@@ -14,7 +14,7 @@ function EmployeeTimesheet() {
       })
       .then((response) => {
         const posts = response.data;
-        setLeaveRequestsList(posts);
+        setEmployeeTimesheetList(posts);
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +36,7 @@ function EmployeeTimesheet() {
         <div style={styles.loading}>Loading...</div>
       ) : (
         <div className="leave-request-container" style={styles.leaveRequestContainer}>
-          {leaveRequestsList.length > 0 ? (
+          {EmployeeTimesheetList.length > 0 ? (
             <table className="table" style={styles.table}>
               <thead>
                 <tr>
@@ -45,19 +45,19 @@ function EmployeeTimesheet() {
                 </tr>
               </thead>
               <tbody>
-              {ProfilesList.map((profile) => (
+              {EmployeeTimesheetList.map((profile) => (
                 <tr key={profile.id}>
                   <td>{profile.username}</td>
                   <td>{profile.firstName}</td>
         
-                  <td class="btn btn-primary" onClick={() => approve(leaveRequest)}>click</td>
+                  <td class="btn btn-primary" onClick={() => approve(profile)}>click</td>
                 </tr>
               ))}
 
               </tbody>
             </table>
           ) : (
-            <div style={styles.noRequests}>No leave requests available yet</div>
+            <div style={styles.noRequests}>No EmployeeTimesheets available yet</div>
           )}
         </div>
       )}

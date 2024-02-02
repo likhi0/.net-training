@@ -1,0 +1,10 @@
+.welcome-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust this value as needed */
+  }
+   
+  .welcome-root h1 {
+    text-align: center;
+  }

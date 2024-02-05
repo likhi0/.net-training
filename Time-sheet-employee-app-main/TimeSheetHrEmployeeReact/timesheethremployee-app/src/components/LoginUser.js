@@ -45,11 +45,11 @@ function LoginUser() {
       alert("Login successful");
       // Navigate to welcome page
       navigate('/Welcome');
+      window.location.reload();
     })
     .catch((error) => {
       console.log(error);
-      setLoginError("Invalid username or password");
-      window.alert("Invalid username or password"); // Use window.alert for a native alert
+     alert("Invalid username or password"); // Use window.alert for a native alert
     });
   }
  

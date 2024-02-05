@@ -50,7 +50,7 @@ namespace TimeSheetHrEmployeeApp.Controllers
         /// <returns></returns>
        
         [HttpPost]
-        [Authorize(Roles = "HR")]
+        [Authorize(Roles = "Hr")]
         public ActionResult Create(Tasks tasks)
         {
             string errorMessage = string.Empty;

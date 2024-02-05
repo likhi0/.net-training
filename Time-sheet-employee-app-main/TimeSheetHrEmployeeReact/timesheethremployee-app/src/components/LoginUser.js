@@ -54,6 +54,7 @@ function LoginUser() {
   }
  
   return (
+  <div className='body'>
     <div className='login-root'>
       <div className='box-root padding-top--24 flex-flex flex-direction--column' style={{ flexGrow: 1, zIndex: 9 }}>
         <div className='formbg-outer'>
@@ -96,6 +97,7 @@ function LoginUser() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

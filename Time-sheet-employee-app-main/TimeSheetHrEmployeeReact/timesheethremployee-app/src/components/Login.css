@@ -115,7 +115,6 @@ a {
   margin: 90px auto;
   width: 110%;
   max-width: 448px;
-  background:khaki;
   border-radius: 4px;
   box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
 }
@@ -194,7 +193,7 @@ a.ssolink {
   display: block;
 }
 .body{
-  background-Color: #f0f0ff;
+  background-Color:lightgrey;
   min-Height: 100px;
   display: flex;
   flex-Direction: column;

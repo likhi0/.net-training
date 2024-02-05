@@ -6,16 +6,18 @@ function Menu() {
   const [userRole, setUserRole] = useState(null);
 
   // Simulate a function to check the user's login status and role (replace with your actual logic)
-  const checkLoginStatus = () => {
+  const initializeLoginState = () => {
     const token = localStorage.getItem("token");
-    const role = localStorage.getItem("role"); // Assuming you store the user's role in localStorage
+    const role = localStorage.getItem("role");
     setLoggedIn(!!token);
     setUserRole(role);
   };
 
-  // Call checkLoginStatus when the component mounts
   useEffect(() => {
-    checkLoginStatus();
+    initializeLoginState(); // Initialize login state when the component mounts
+
+    // ... (rest of the useEffect code)
+
   }, []);
 
   const handleLogout = () => {

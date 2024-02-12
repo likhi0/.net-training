@@ -7,7 +7,7 @@ namespace TimeSheetHrEmployeeApp.Interface
         bool AddTimeSheet(TimeSheet timeSheet);
 
         public IList<TimeSheet> GetAllTimeSheets(string username);
-        IList<TimeSheet> GetTimeSheets();
+        
 
     }
         

@@ -43,7 +43,7 @@ namespace TimeSheetHrEmployeeApp.Services
 
         public IList<LeaveRequest> GetAllLeaves(string username)
         {
-            // Retrieve leaves based on the provided username
+            
             var leaves = _leaverequestRepository.GetAll().Where(u => u.Username == username).ToList();
             return leaves.Any() ? leaves.ToList() : null;
         }

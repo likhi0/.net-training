@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "N0DResdm1ted+u7r79TXsc8jW0zyIsQxwoscht136q3K1IiTv59OtUEiT/LA6mIzucrEMsOQ20eH4pzmFt76VA==",
+  "dgSpecHash": "O9/AOMhYWPm1mn0eCDfDfGqNV4dEijt4PEHvOziYZDK5AJhWZTaFy7SW1Sql1FS5fwDGSInXyaRb5TDXQRnHXQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\2000112443\\Downloads\\Time-sheet-employee-app-main\\Time-sheet-employee-app-main\\TimeSheetHrEmployeeSolution\\TimeSheetHrEmployeeTesting\\TimeSheetHrEmployeeTesting.csproj",
   "expectedPackageFiles": [
@@ -190,7 +190,10 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\2000112443\\.nuget\\packages\\system.threading.tasks.dataflow\\6.0.0\\system.threading.tasks.dataflow.6.0.0.nupkg.sha512",
     "C:\\Users\\2000112443\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\2000112443\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\2000112443\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\2000112443\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\2000112443\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\2000112443\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512"
   ],
   "logs": []
 }

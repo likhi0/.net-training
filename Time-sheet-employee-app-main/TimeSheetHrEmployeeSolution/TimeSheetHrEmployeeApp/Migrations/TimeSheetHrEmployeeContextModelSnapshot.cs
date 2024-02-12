@@ -22,6 +22,32 @@ namespace TimeSheetHrEmployeeApp.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("TimeSheet", b =>
+                {
+                    b.Property<int>("TimesheetID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TimesheetID"), 1L, 1);
+
+                    b.Property<string>("Period")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("TotalHoursWorked")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("TimesheetID");
+
+                    b.HasIndex("Username");
+
+                    b.ToTable("TimeSheets");
+                });
+
             modelBuilder.Entity("TimeSheetHrEmployeeApp.Models.Approval", b =>
                 {
                     b.Property<int>("ApprovalID")
@@ -141,39 +167,6 @@ namespace TimeSheetHrEmployeeApp.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("TimeSheetHrEmployeeApp.Models.TimeSheet", b =>
-                {
-                    b.Property<int>("TimesheetID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TimesheetID"), 1L, 1);
-
-                    b.Property<string>("Comments")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("HoursWorked")
-                        .HasColumnType("float");
-
-                    b.Property<double>("OverTime")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Period")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("TimesheetID");
-
-                    b.HasIndex("Username");
-
-                    b.ToTable("TimeSheets");
-                });
-
             modelBuilder.Entity("TimeSheetHrEmployeeApp.Models.User", b =>
                 {
                     b.Property<string>("Username")
@@ -194,6 +187,52 @@ namespace TimeSheetHrEmployeeApp.Migrations
                     b.HasKey("Username");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("WorkEntryRequest", b =>
+                {
+                    b.Property<int>("WorkEntryRequestID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WorkEntryRequestID"), 1L, 1);
+
+                    b.Property<string>("Comments")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DayOfWeek")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("HoursWorked")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Overtime")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("TimesheetID")
+                        .HasColumnType("int");
+
+                    b.HasKey("WorkEntryRequestID");
+
+                    b.HasIndex("TimesheetID");
+
+                    b.ToTable("WorkEntryRequest");
+                });
+
+            modelBuilder.Entity("TimeSheet", b =>
+                {
+                    b.HasOne("TimeSheetHrEmployeeApp.Models.User", "User")
+                        .WithMany("Timesheets")
+                        .HasForeignKey("Username")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TimeSheetHrEmployeeApp.Models.Approval", b =>
@@ -229,15 +268,16 @@ namespace TimeSheetHrEmployeeApp.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TimeSheetHrEmployeeApp.Models.TimeSheet", b =>
+            modelBuilder.Entity("WorkEntryRequest", b =>
                 {
-                    b.HasOne("TimeSheetHrEmployeeApp.Models.User", "User")
-                        .WithMany("Timesheets")
-                        .HasForeignKey("Username")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("TimeSheet", null)
+                        .WithMany("WorkEntries")
+                        .HasForeignKey("TimesheetID");
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("TimeSheet", b =>
+                {
+                    b.Navigation("WorkEntries");
                 });
 
             modelBuilder.Entity("TimeSheetHrEmployeeApp.Models.User", b =>

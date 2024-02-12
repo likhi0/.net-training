@@ -37,9 +37,10 @@ namespace TimeSheetHrEmployeeApp.Repositories
         {
             if (_context.TimeSheets.Count() == 0)
                 return null;
-            
-            return _context.TimeSheets.ToList();
+
+            return _context.TimeSheets.Include(ts => ts.WorkEntries).ToList();
         }
+
 
 
         public TimeSheet GetById(int key)

@@ -74,7 +74,7 @@ namespace TimeSheetHrEmployeeApp
                 });
             builder.Services.AddDbContext<TimeSheetHrEmployeeContext>(opts =>
             {
-                opts.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
+                opts.UseSqlServer(builder.Configuration.GetConnectionString("TimeSheetasp"));
             });
             builder.Logging.AddLog4Net();
             #endregion

@@ -13,12 +13,13 @@ namespace TimeSheetHrEmployeeApp.Context
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<TimeSheet> TimeSheets { get; set; }
        
-        public DbSet<Tasks> Tasks { get; set; }
-        public DbSet<LeaveRequest> LeaveRequests { get; set; }
-        public DbSet<Approval> Approvals { get; set; }
+        public DbSet<Tasks>Tasks{ get; set; }
+        public DbSet<LeaveRequest> LeaveRequests{ get; set; }
+        public DbSet<Approval> Approvals{ get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+       
+        /*prected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TimeSheet>()
                 .HasOne<User>(t => t.User)
@@ -32,7 +33,7 @@ namespace TimeSheetHrEmployeeApp.Context
 
 
 
-        }
+        }*/
     }
 
 

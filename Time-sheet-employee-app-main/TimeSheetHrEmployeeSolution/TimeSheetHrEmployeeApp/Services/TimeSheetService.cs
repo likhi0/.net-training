@@ -7,63 +7,47 @@ namespace TimeSheetHrEmployeeApp.Services
 {
     public class TimeSheetService : ITimeSheetService
     {
-        private readonly IRepository<int, TimeSheet> _TimesheetRepository;
+        private readonly IRepository<int, TimeSheet> _timesheetRepository;
 
-        public TimeSheetService(IRepository<int, TimeSheet> TimesheetRepository)
+        public TimeSheetService(IRepository<int, TimeSheet> timesheetRepository)
         {
-            _TimesheetRepository = TimesheetRepository;
+            _timesheetRepository = timesheetRepository;
         }
-        /// <summary>
-        /// add the time sheet details
-        /// </summary>
-        /// <param name="timeSheet"></param>
-        /// <returns></returns>
 
-        public bool AddTimeSheet(TimeSheet timeSheet)
+        public bool AddTimeSheet(TimeSheet timeSheetRequest)
         {
-            var TimeSheet = new TimeSheet
+            var newTimeSheet = new TimeSheet
             {
-                Username = timeSheet.Username,
-                Period = timeSheet.Period,
-                HoursWorked = timeSheet.HoursWorked,
-                OverTime = timeSheet.OverTime,
-                Comments =  timeSheet.Comments
+                Username = timeSheetRequest.Username,
+                Period = timeSheetRequest.Period,
+                TotalHoursWorked = timeSheetRequest.TotalHoursWorked,
+                WorkEntries = timeSheetRequest.WorkEntries.Select(workEntryRequest => new WorkEntryRequest
+                {
+                    Date = workEntryRequest.Date,
+                    DayOfWeek = workEntryRequest.DayOfWeek,
+                    HoursWorked = workEntryRequest.HoursWorked,
+                    Overtime = workEntryRequest.Overtime,
+                    Comments = workEntryRequest.Comments
+                }).ToList()
             };
-            var result = _TimesheetRepository.Add(timeSheet);
-            if (timeSheet != null)
-            {
-                return true;
-            }
-            return false;
 
+            var result = _timesheetRepository.Add(newTimeSheet);
+            return result != null;
         }
-        /// <summary>
-        /// list of the timesheets 
-        /// </summary>
-        /// <param name="username"></param>
-        /// <returns></returns>
 
         public IList<TimeSheet> GetAllTimeSheets(string username)
         {
-            var user = _TimesheetRepository.GetAll().Where(u => u.Username == username).ToList();
+            var userTimeSheets = _timesheetRepository
+                .GetAll()
+                .Where(u => u.Username == username)
+                .ToList();
 
-            if (user != null)
+            if (userTimeSheets.Any())
             {
-                return user.ToList();
+                return userTimeSheets;
             }
 
             throw new NoTimeSheetAvaliableException();
         }
-        public IList<TimeSheet> GetTimeSheets()
-        {
-            var timeSheets = _TimesheetRepository.GetAll();
-            if (timeSheets != null)
-            {
-                return timeSheets.ToList();
-            }
-            throw new NoTimeSheetAvaliableException();
-        }
-
-
     }
 }

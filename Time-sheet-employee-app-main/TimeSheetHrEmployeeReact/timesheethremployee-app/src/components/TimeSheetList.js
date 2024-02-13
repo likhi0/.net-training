@@ -43,7 +43,9 @@ function TimeSheetList() {
   };
 
   return (
-    <div style={{ padding: "20px", backgroundColor: "#f8f9fa" }}>
+   
+    
+    <div style={{ backgroundColor: "#f0f0f0", minHeight: "100vh", padding: "20px" }}>
       <h1 style={{ color: "#28a745", fontSize: "24px", marginBottom: "20px", marginTop:"70px"}}>TimeSheet Details</h1>
   
       {loading ? (
@@ -123,6 +125,7 @@ function TimeSheetList() {
         </a>
       </div>
     </div>
+    
   );
 };
 

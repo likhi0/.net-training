@@ -64,6 +64,13 @@ function TaskList() {
   }
 
   const styles = {
+    body: {
+      backgroundColor: '#f0f0f0', 
+      minHeight: '100vh', 
+      display: 'flex',
+      flexDirection: 'column', 
+      fontFamily: 'Arial, sans-serif', 
+    },
     alertSuccess: {
       backgroundColor: "#28a745",
       color: "#fff",

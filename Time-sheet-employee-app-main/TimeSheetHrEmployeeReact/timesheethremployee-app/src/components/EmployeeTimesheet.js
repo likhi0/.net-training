@@ -25,7 +25,7 @@ function EmployeeTimesheet() {
   });
 
   const approve=(request)=>{
-    navigate("/TimeSheetList" ,{state: {request}});
+    navigate("/Listoftimesheets" ,{state: {request}});
   }
   return (
     <div style={styles.body}>

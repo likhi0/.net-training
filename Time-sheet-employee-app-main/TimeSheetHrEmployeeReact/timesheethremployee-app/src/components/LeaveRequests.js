@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import TimeSheet from './TimeSheet'; // Import TimeSheet component
 
 function LeaveRequests() {
   const UserName = localStorage.getItem("username");
@@ -24,57 +24,54 @@ function LeaveRequests() {
       .finally(() => {
         setLoading(false);
       });
-  },[UserName]);
-  
+  }, [UserName]);
 
   return (
     <div style={styles.body}>
-    <div className="leave-list" style={styles.leaveList}>
-      <h1 style={styles.alertSuccess}>Leaves</h1>
+      <div className="leave-list" style={styles.leaveList}>
+        <h1 style={styles.alertSuccess}>Leaves</h1>
 
-      
-
-      {loading ? (
-        <div style={styles.loading}>Loading...</div>
-      ) : (
-        <div className="leave-request-container" style={styles.leaveRequestContainer}>
-          {leaveRequestsList.length > 0 ? (
-            <table className="table" style={styles.table}>
-              <thead>
-                <tr>
-                  <th>Leave Request Start Date</th>
-                  <th>Leave Request End Date</th>
-                  <th>Leave Request Reason</th>
-                </tr>
-              </thead>
-              <tbody>
-                {leaveRequestsList.map((leaveRequest) => (
-                  <tr key={leaveRequest.id}>
-                    <td>{leaveRequest.startDate}</td>
-                    <td>{leaveRequest.endDate}</td>
-                    <td>{leaveRequest.status}</td>
+        {loading ? (
+          <div style={styles.loading}>Loading...</div>
+        ) : (
+          <div className="leave-request-container" style={styles.leaveRequestContainer}>
+            {leaveRequestsList.length > 0 ? (
+              <table className="table" style={styles.table}>
+                <thead>
+                  <tr>
+                    <th>Leave Request Start Date</th>
+                    <th>Leave Request End Date</th>
+                    <th>Leave Request Reason</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <div style={styles.noRequests}>No leave requests available yet</div>
-          )}
+                </thead>
+                <tbody>
+                  {leaveRequestsList.map((leaveRequest) => (
+                    <tr key={leaveRequest.id}>
+                      <td>{leaveRequest.startDate}</td>
+                      <td>{leaveRequest.endDate}</td>
+                      <td>{leaveRequest.status}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div style={styles.noRequests}>No leave requests available yet</div>
+            )}
+          </div>
+        )}
+
+        <div className="col-sm-15 ">
+          <a
+            href="/LeaveRequest"
+            className="text-decoration-black mb-3 text-info fw-bold"
+            style={{ fontSize: '14px', color: 'black' }}
+          >
+            Back
+          </a>
         </div>
-      )}
-      <div className="col-sm-15 " > 
+      </div>
+    
       
-         
-       
-      <a
-        href="/LeaveRequest"
-        className="text-decoration-black mb-3 text-info fw-bold"
-        style={{ fontSize: '14px', color: 'black' }} 
-      > 
-        Back
-      </a>
-    </div>
-    </div>
     </div>
   );
 }

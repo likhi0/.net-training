@@ -73,16 +73,30 @@ function Menu() {
                       </Link>
                     </div>
                   </li>
+                  <li className="nav-item dropdown">
+                    <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      TimeSheet
+                    </Link>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <Link className="dropdown-item" to="/TimeSheet">
+                        Timesheet
+                      </Link>
+                     
+                      <Link className="dropdown-item" to="/TimeSheetList">
+                        TimeSheetList
+                      </Link>
+                      <Link className="dropdown-item" to="/EmployeeTimesheet">
+                      EmployeeTimeSheets
+                      </Link>
+                    </div>
+                  </li>
+                  
                   <li className="nav-item">
                     <Link className="nav-link" to="/Tasks">
                       Task
                     </Link>
                   </li>
-                  <li className="nav-item">
-                  <Link className="dropdown-item" to="/EmployeeTimesheet">
-                        EmployeeTimeSheets
-                      </Link>
-                  </li>
+                 
                   <li className="nav-item">
                     <Link className="nav-link" to="/Approval">
                       Approval

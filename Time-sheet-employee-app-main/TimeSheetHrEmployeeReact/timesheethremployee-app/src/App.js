@@ -23,6 +23,7 @@ import Home from './components/Home';
 import WelcomePage from './components/Welcome';
 import EmployeeTimesheet from './components/EmployeeTimesheet';
 import Logout from './components/Logout';
+import Listoftimesheets from './components/Listoftimesheets';
 import Protected from './Protected';
 //import App1 from'./components/App1';
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route path="/UserProfile" element={<UserProfile/>}/>
         <Route path="/Welcome" element={<WelcomePage />} />
         <Route path="/EmployeeTimesheet" element={<EmployeeTimesheet/>}/>
+        <Route path="/Listoftimesheets" element={<Listoftimesheets/>}/>
 
         
         

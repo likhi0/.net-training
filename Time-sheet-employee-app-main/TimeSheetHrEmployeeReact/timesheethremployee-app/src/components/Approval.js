@@ -2,16 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {message} from 'antd';
 
 
 function Approval() {
   const location = useLocation();
   const { request } = location.state || {};
-
-  // Use optional chaining to handle potential undefined values
   const statuses = ["Approved", "Disapproved"];
-  //const timesheetIDInitial = request?.leaveRequestID || '';
-  //const userName = localStorage.getItem("username");
+  
   const [approvedBy, setApprovedBy] = useState(localStorage.getItem("firstName") || '');
   const [approvedDate, setApprovedDate] = useState(new Date());
   const [status, setStatus] = useState("");
@@ -25,7 +23,40 @@ function Approval() {
     alert("You don't have access to this page");
     
     return null;
-}
+} 
+localStorage.setItem('Employeeusername', username);
+const email = String(localStorage.getItem("Employeeusername")) || username;
+
+    const sendEmail = async () => {
+      try {
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            service_id: 'service_r1ilyn7',
+            template_id: 'template_v278ega',
+            user_id: '7BnOiqsv8uGQ7PZo4',
+            template_params: {
+              to_email: email,
+              message: `Dear ${username},\n\nWe are pleased to inform you that your LeaveRequest is approved.In this Date\n\nApproval Date: ${approvedDate}}\.`,
+              'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...',
+            },
+          }),
+        });
+        if (!response.ok) {
+          console.error('EmailJS request failed:', response.statusText);
+          // Handle the error as needed
+        } else {
+          alert('Email sent successfully!');
+          // Handle success
+        }
+      } catch (error) {
+        error('Error sending email:', error);
+        // Handle the error as needed
+      }
+    };
 
   var checkUserData = () => {
 
@@ -82,6 +113,7 @@ function Approval() {
       .then((userData) => {
         console.log(userData);
         alert("Data added successfully");
+        sendEmail();
       })
       .catch((err) => {
         console.log(err);
